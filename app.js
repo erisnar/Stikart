@@ -1381,6 +1381,11 @@ async function loadRace(race) {
             finishMarker.addTo(raceLayers[race.name]);
         }
 
+        // If another race was selected while this one was still loading, start dimmed
+        if (selectedRaceName && selectedRaceName !== race.name) {
+            racePolylines[race.name].forEach(pl => pl.setStyle({ opacity: 0.15, weight: 2 }));
+        }
+
         console.log(`Loaded race: ${race.name} (${race.files.length} segments)`);
     } catch (error) {
         console.error(`Error loading ${race.name}:`, error);
@@ -1572,13 +1577,13 @@ function disableDistanceDot() {
 function minimizeDetail() {
     document.getElementById('race-detail-overlay').classList.add('minimized');
     const btn = document.getElementById('minimize-detail');
-    if (btn) { btn.innerHTML = '&#9650;'; btn.title = 'Utvid'; }
+    if (btn) btn.title = 'Utvid';
 }
 
 function expandDetail() {
     document.getElementById('race-detail-overlay').classList.remove('minimized');
     const btn = document.getElementById('minimize-detail');
-    if (btn) { btn.innerHTML = '&#9660;'; btn.title = 'Minimer'; }
+    if (btn) btn.title = 'Minimer';
 }
 
 function enableChartMouse(raceName) {
@@ -2073,7 +2078,13 @@ function showRaceDetailOverlay(race, loading = false) {
 
     content.innerHTML = `
         <div class="race-popup">
-            <h3>${race.name} <span class="popup-color-btn" onclick="changeRaceColor('${race.name}')" title="Endre farge">🎨</span></h3>
+            <div class="race-popup-header">
+                <h3>${race.name}</h3>
+                <div class="race-popup-icon-btns">
+                    <button class="popup-color-btn" onclick="changeRaceColor('${race.name}')" title="Endre farge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></button>
+                    <button class="race-edit-btn" onclick="openEditRaceForm('${race.name.replace(/'/g, "\\'")}')" title="Foreslå endring"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></button>
+                </div>
+            </div>
             ${race.description ? `<p class="race-description">${race.description.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>` : ''}
             <div class="race-popup-details">
                 <div class="race-details">
@@ -2090,9 +2101,6 @@ function showRaceDetailOverlay(race, loading = false) {
                     <button class="race-share-btn" onclick="shareRace('${race.name.replace(/'/g, "\\'")}')">
                         Del løype
                     </button>
-                    <button class="race-edit-btn" onclick="openEditRaceForm('${race.name.replace(/'/g, "\\'")}')">
-                        Foreslå endring
-                    </button>
                 </div>
             </div>
             ${renderElevationChart(raceElevationData[race.name], race.color, race.name, race.checkpoints)}
@@ -2104,11 +2112,11 @@ function showRaceDetailOverlay(race, loading = false) {
     const minBtn = document.getElementById('minimize-detail');
     if (isTouchDevice) {
         overlay.classList.add('minimized');
-        if (minBtn) { minBtn.innerHTML = '&#9650;'; minBtn.title = 'Utvid'; }
+        if (minBtn) minBtn.title = 'Utvid';
         document.getElementById('race-panel').style.display = 'none';
     } else {
         overlay.classList.remove('minimized');
-        if (minBtn) { minBtn.innerHTML = '&#9660;'; minBtn.title = 'Minimer'; }
+        if (minBtn) minBtn.title = 'Minimer';
         pacePlannerRace = race.name;
     }
 }

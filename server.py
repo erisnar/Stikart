@@ -32,6 +32,9 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
 
 QuietHandler.extensions_map['.gpx'] = 'application/gpx+xml'
 
+# Allow immediate restart (e.g. between test runs) while old sockets are in TIME_WAIT
+socketserver.TCPServer.allow_reuse_address = True
+
 with socketserver.TCPServer(("", PORT), QuietHandler) as httpd:
     print(f"Server running at http://localhost:{PORT}/")
     print(f"Open http://localhost:{PORT}/index.html in your browser")
