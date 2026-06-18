@@ -199,8 +199,8 @@ async function createRacePR(payload, token) {
         filePaths = [gpxPath];
     }
 
-    // 3. Fetch app.js and build new entries
-    const appJsFile = await gh(`/contents/app.js?ref=${encodeURIComponent(branch)}`);
+    // 3. Fetch js/races.js and build new entries
+    const appJsFile = await gh(`/contents/js/races.js?ref=${encodeURIComponent(branch)}`);
     let appJs = fromBase64(appJsFile.content);
 
     const color = originalColor || darkColorPool[Math.floor(Math.random() * darkColorPool.length)];
@@ -230,17 +230,17 @@ async function createRacePR(payload, token) {
     // 4. Remove old entry for edits, then prepend new entries
     if (isEdit) {
         const bounds = findEntryBounds(appJs, originalId, originalName);
-        if (!bounds) throw new Error(`Fant ikke løpet "${originalName}" i app.js`);
+        if (!bounds) throw new Error(`Fant ikke løpet "${originalName}" i js/races.js`);
         appJs = appJs.slice(0, bounds.start) + appJs.slice(bounds.end);
     }
 
     const marker = 'const raceRoutes = [';
     const insertAt = appJs.indexOf(marker) + marker.length;
-    if (insertAt < marker.length) throw new Error('raceRoutes not found in app.js');
+    if (insertAt < marker.length) throw new Error('raceRoutes not found in js/races.js');
     appJs = appJs.slice(0, insertAt) + '\n' + newEntries.join(',\n') + ',' + appJs.slice(insertAt);
 
-    // 5. Commit app.js
-    await gh('/contents/app.js', {
+    // 5. Commit js/races.js
+    await gh('/contents/js/races.js', {
         method: 'PUT',
         body: JSON.stringify({
             message: isEdit ? `Update race: ${name}` : `Add race: ${name}`,

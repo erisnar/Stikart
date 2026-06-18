@@ -64,9 +64,16 @@ function parseGPXToGeoJSON(gpxText) {
     const gpxDoc = parser.parseFromString(gpxText, 'text/xml');
 
     const coordinates = [];
-    const trackPoints = gpxDoc.querySelectorAll('trkpt');
+    // Support both track files (<trkpt>) and route files (<rtept>)
+    let trackPoints = gpxDoc.querySelectorAll('trkpt');
+    if (trackPoints.length === 0) trackPoints = gpxDoc.querySelectorAll('rtept');
 
-    trackPoints.forEach(trkpt => {
+    // Downsample dense recordings to keep rendering performant (target ~3000 pts)
+    const MAX_POINTS = 3000;
+    const stride = trackPoints.length > MAX_POINTS ? Math.ceil(trackPoints.length / MAX_POINTS) : 1;
+
+    trackPoints.forEach((trkpt, i) => {
+        if (i % stride !== 0) return;
         const lat = parseFloat(trkpt.getAttribute('lat'));
         const lon = parseFloat(trkpt.getAttribute('lon'));
         const eleElement = trkpt.querySelector('ele');
