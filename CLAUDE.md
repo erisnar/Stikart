@@ -39,7 +39,17 @@ npx playwright test --project=mobile             # mobile only
 
 | File | Purpose |
 |------|---------|
-| `app.js` | Everything: map init, race data, UI, filters, pace planner (~2470 lines) |
+| `js/config.js` | Constants: `WORKER_URL`, `isTouchDevice`, `darkColorPool`, `raceCategories` |
+| `js/races.js` | `raceRoutes` data array — one entry per race |
+| `js/utils.js` | Pure utility functions: `slugify`, `formatDate`, `haversineKm`, `fmtTime`, `fmtPace`, etc. |
+| `js/map.js` | Leaflet map init, tile layers, icons, layer state, `loadRace`/`loadRaces`, `highlightRace`, `resetRaceStyles`, `regenerateColors`, race picker popup, custom layer control |
+| `js/filters.js` | Filter state and functions: `applyFilters`, `filterByMonth`, `filterByCategory`, `filterBySearch`, `clearSearch` |
+| `js/elevation.js` | `buildElevationProfile`, `renderElevationChart`, `updateElevCursor` |
+| `js/cursor.js` | Shared cursor state (`dotFrozen`, `chartTouchMarker`), `enableDistanceDot`/`disableDistanceDot`, `enableChartMouse`/`enableChartTouch`, `minimizeDetail`/`expandDetail` |
+| `js/pace-planner.js` | Pace math (`gradeFactor`, `fatiguedArrival`, `calcCheckpointSplits`), `renderPacePlanner`, `openPacePlanner`/`closePacePlanner`/`updatePacePlanner`, `zoomToCheckpoint` |
+| `js/race-panel.js` | Race list panel, race detail overlay, `selectRace`, `showRaceDetailOverlay`, `closeRaceDetail`, `shareRace`, `changeRaceColor`; extends `applyFilters` and `regenerateColors` |
+| `js/submission.js` | Race submit/edit form: `showSubmitRaceForm`, `openEditRaceForm`, `handleRaceSubmit`, `parseGPXForStats` |
+| `js/main.js` | Entry point: `showInfoOverlay`, `downloadGpx`, startup sequence (`regenerateColors`, URL params, initial `loadRace`/`loadRaces`) |
 | `gpx-parser.js` | Parses GPX XML → GeoJSON; Haversine distance + elevation gain; extracts `<wpt>` waypoints |
 | `index.html` | Shell: map div, filter bar, panels, overlays |
 | `style.css` | All styles |
@@ -49,9 +59,11 @@ npx playwright test --project=mobile             # mobile only
 | `race-calendar/` | GPX files, one folder per race |
 | `.github/workflows/validate-race.yml` | CI: validates GPX and auto-merges valid race PRs |
 
+Scripts load in order: `config → races → utils → map → filters → elevation → cursor → pace-planner → race-panel → submission → main`. Each file can reference globals from earlier files; forward references (e.g. `selectRace` called from `loadRace`) work because they're only resolved at call time, not definition time.
+
 ## Race entry format
 
-Each entry in the `raceRoutes` array in `app.js`:
+Each entry in the `raceRoutes` array in `js/races.js`:
 
 ```javascript
 {
@@ -135,13 +147,13 @@ Users submit new races and propose edits via "Mangler det et løp?" in the info 
 4. Worker: creates branch → uploads GPX → inserts entry/entries into `raceRoutes` → opens PR
 5. GitHub Actions validates and auto-merges
 
-**Edit flow:** "Foreslå endring" button in every race detail popup. Pre-fills the form. Worker locates the entry by `id` field (falls back to name search for legacy entries without `id`), removes it, and inserts the updated entry at the top of `raceRoutes`.
+**Edit flow:** "Foreslå endring" button in every race detail popup. Pre-fills the form. Worker locates the entry by `id` field (falls back to name search for legacy entries without `id`), removes it, and inserts the updated entry at the top of `raceRoutes` in `js/races.js`.
 
 **Honeypot:** hidden `#race-hp` input — if non-empty on submit, request is silently dropped.
 
 ## Cloudflare Worker
 
-- **URL config**: `WORKER_URL` constant at the top of `app.js`
+- **URL config**: `WORKER_URL` constant in `js/config.js`
 - **Deploy**: `wrangler deploy` from the repo root
 - **Secret**: `wrangler secret put GITHUB_TOKEN` — fine-grained PAT: `Contents: write` + `Pull requests: write` on this repo
 - **CORS**: origin-checked against `ALLOWED_ORIGINS` env var (default: `https://stikart.no,http://localhost:8000`)
@@ -160,7 +172,7 @@ After bulk GPX changes, re-stamp all entries from git history (run from repo roo
 ```bash
 node << 'EOF'
 const fs = require('fs'), { execSync } = require('child_process');
-let src = fs.readFileSync('app.js', 'utf8'), count = 0;
+let src = fs.readFileSync('js/races.js', 'utf8'), count = 0;
 src = src.replace(/(        files: \[[\s\S]*?\],)(\n        (?!gpxUpdated))/g, (m, filesBlock, nextLine) => {
     const paths = [...filesBlock.matchAll(/['"]([^'"]+\.gpx)['"]/g)].map(m => m[1]);
     const dates = paths.map(p => { try { return execSync(`git log -1 --format="%aI" -- "${p}"`).toString().trim().substring(0,10); } catch { return null; } }).filter(Boolean).sort();
@@ -169,7 +181,7 @@ src = src.replace(/(        files: \[[\s\S]*?\],)(\n        (?!gpxUpdated))/g, (
     count++;
     return filesBlock + `\n        gpxUpdated: '${latest}',` + nextLine;
 });
-fs.writeFileSync('app.js', src);
+fs.writeFileSync('js/races.js', src);
 console.log(`Stamped ${count} entries`);
 EOF
 ```
