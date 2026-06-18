@@ -1,6 +1,18 @@
 // GPX race routes configuration
 const raceRoutes = [
     {
+        id: 'norefjell-trail-42k',
+        name: 'Norefjell Trail 42K',
+        files: ['race-calendar/Norefjell/NorefjellTrail-42K.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#0b7285',
+        url: 'https://www.norefjelltrail.no/',
+        description: 'A true test of endurance covering diverse terrain including gravel roads, technical single tracks, open mountain terrain, and fast runnable trails. The course passes Tempelseter and the lake of Istjenn, and reaches the peak of Høgevarde before descending to the finish.',
+        useCalculatedStats: true,
+        category: 'marathon-trail',
+        date: '2026-06-20',
+    },
+    {
         id: "lommedalen-rundt",
         name: "Lommedalen Rundt",
         files: ["race-calendar/lommedalen-rundt/lommedalen-rundt-2025-published.gpx"],
