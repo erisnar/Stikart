@@ -67,12 +67,21 @@ body {
     padding: 15px;
 }
 
-.race-popup h3 {
-    margin: 0 0 10px 0;
-    color: #116A7B;
-    font-size: 1.2em;
+.race-popup-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
     border-bottom: 2px solid #116A7B;
     padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.race-popup h3 {
+    margin: 0;
+    color: #116A7B;
+    font-size: 1.2em;
+    flex: 1;
 }
 
 .race-popup .race-description {
@@ -82,11 +91,10 @@ body {
 }
 
 .race-popup .race-details {
-    margin: 10px 0;
-    padding: 10px;
-    background: #C2DEDC;
-    border-radius: 4px;
+    margin: 6px 0 10px;
     font-size: 0.9em;
+    border-top: 1px solid #f0ece8;
+    padding-top: 10px;
 }
 
 .race-popup .race-details div {
@@ -122,18 +130,17 @@ body {
 }
 
 .race-popup .race-share-btn {
-    padding: 8px 16px;
-    background: #CDC2AE;
-    color: #333;
+    padding: 8px 4px;
+    background: none;
+    color: #888;
     border: none;
-    border-radius: 4px;
     font-size: 0.9em;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: color 0.15s;
 }
 
 .race-popup .race-share-btn:hover {
-    background: #b8ad9e;
+    color: #333;
 }
 
 .share-url-display {
@@ -145,16 +152,27 @@ body {
     font-family: monospace;
 }
 
+.race-popup-icon-btns {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
 .popup-color-btn {
+    background: none;
+    border: none;
+    color: #aaa;
     cursor: pointer;
-    font-size: 14px;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-    margin-left: 8px;
+    padding: 2px 4px;
+    line-height: 1;
+    transition: color 0.15s;
+    display: flex;
+    align-items: center;
 }
 
 .popup-color-btn:hover {
-    opacity: 1;
+    color: #116A7B;
 }
 
 
@@ -1193,18 +1211,31 @@ body {
 }
 
 .race-edit-btn {
+    flex-shrink: 0;
     background: none;
-    border: 1px solid #b0aba5;
-    border-radius: 6px;
-    color: #555;
-    padding: 6px 12px;
-    font-size: 0.85em;
+    border: none;
+    color: #aaa;
+    font-size: 1em;
     cursor: pointer;
+    padding: 2px 4px;
+    line-height: 1;
+    transition: color 0.15s;
 }
 
 .race-edit-btn:hover {
-    border-color: #116A7B;
     color: #116A7B;
+}
+
+.minimize-detail-chevron {
+    display: inline-block;
+    font-size: 1.2em;
+    line-height: 1;
+    transition: transform 0.15s;
+    transform: rotate(90deg);
+}
+
+.race-detail-overlay.minimized .minimize-detail-chevron {
+    transform: rotate(-90deg);
 }
 
 /* ── End submit race form ─────────────────────────────────────────────────── */

@@ -11,6 +11,22 @@ python3 server.py
 
 The Python server is needed to avoid CORS errors when fetching local GPX files.
 
+## Integration tests
+
+Playwright end-to-end tests in `tests/` — the only npm usage in the repo (dev-only; the app itself still has no build step).
+
+```bash
+npm install && npx playwright install chromium   # one-time setup
+npm test            # run all tests (starts server.py automatically)
+npm run test:ui     # interactive UI mode
+npx playwright test --project=mobile             # mobile only
+```
+
+- Two projects: `desktop` (Desktop Chrome) and `mobile` (Pixel 7 emulation — touch events + coarse pointer, so `isTouchDevice`/`isMobile` code paths run)
+- `tests/fixtures.js` blocks analytics and serves blank map tiles (offline-safe), and has helpers: `touchScrub` (real CDP touch events for chart finger-scrubbing), `expandPanel`, `openRaceDeepLink`
+- Tests reference the races `nsm-ultra-2025` and `lommedalen-rundt` (`TEST_RACE`/`DESCRIBED_RACE` in fixtures) — update fixtures if those entries are ever removed
+- Covered: race list/search, race selection + map highlight/dim, elevation chart mouse hover and touch scrub (cursor, km marker, freeze/lock), mobile welcome screen, minimized detail card, deep links
+
 ## Tech stack
 
 - Vanilla JS, HTML, CSS — no build step, no framework, no npm
