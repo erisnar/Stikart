@@ -68,13 +68,10 @@ body {
 }
 
 .race-popup-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
     border-bottom: 2px solid #116A7B;
     padding-bottom: 8px;
     margin-bottom: 10px;
+    padding-right: 56px;
 }
 
 .race-popup h3 {
@@ -148,6 +145,12 @@ body {
     word-break: break-all;
     margin-top: 4px;
     font-family: monospace;
+}
+
+.race-details-date-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .race-popup-icon-btns {
@@ -746,6 +749,8 @@ body {
         width: 22px;
         height: 22px;
         font-size: 13px;
+        background: transparent;
+        border-radius: 0;
     }
 
     .minimize-detail {
@@ -1492,6 +1497,7 @@ details.pace-section[open] .pace-section-chevron {
     font-weight: 600;
     color: #222;
     white-space: nowrap;
+    min-width: 120px;
 }
 
 .pace-overlay-input {
@@ -1611,7 +1617,7 @@ details.pace-section[open] .pace-section-chevron {
 }
 
 .pace-desc-summary {
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 500;
     color: #555;
     cursor: pointer;

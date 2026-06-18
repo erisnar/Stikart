@@ -106,7 +106,6 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100-miles',
         date: '2026-05-23',
-        gpxYear: 2026,
     },
     {
         id: 'endless-shore-ultra-50-miles',
@@ -118,7 +117,6 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-05-23',
-        gpxYear: 2026,
     },
     {
         id: 'endless-shore-ultra-50k',
@@ -130,7 +128,6 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-05-23',
-        gpxYear: 2026,
     },
     {
         id: 'sandnes-100-miles',
