@@ -22,7 +22,8 @@ const raceRoutes = [
         url: 'https://nordmarkaskogsmaraton.no/',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-06-20'
+        date: '2026-06-20',
+        description: 'Nordmarka Skogsmaraton følger en flott løypetrase primært på grusveier gjennom grønne skogslandskaper, med kun ett parti på ca. 1,5 km på sti.',
     },
     {
         id: 'obt-oslo-bergen-trail',
@@ -39,7 +40,8 @@ const raceRoutes = [
         manualDistance: 500,
         manualElevation: 15000,
         category: '100-miles-plus',
-        date: '2027-07-01'
+        date: '2027-07-01',
+        description: 'Oslo-Bergen Trail er et terrengultraløp fra Oslo til Bergen, arrangert første gang i 2021. Distansene spenner fra Gullbotn-Bergen 37K til Oslo-Bergen 500K for individuelle deltakere og lag.',
     },
     {
         id: 'smve-soria-moria-til-verdens-ende',
@@ -51,6 +53,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100-miles',
         date: '2026-05-30',
+        description: 'Ultra-terrengløp fra Soria Moria i Voksenkollen i Oslo til Verdens Ende på Tjøme i Vestfold – en klassiker i kategorien 100 miles+.',
     },
     {
         id: 'noesen-hundreds',
@@ -62,6 +65,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100k',
         date: '2026-06-13',
+        description: 'Et ultraløp gjennom timeless peaks som forbinder Valdres og Hemsedal – der løperne tråkker stier som har vært livslinjer siden steinalderen.',
     },
     {
         id: 'dobbeltravern-nordmarkstraveren',
@@ -72,7 +76,8 @@ const raceRoutes = [
         url: 'http://www.nordmarkstravern.no/',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-09-05'
+        date: '2026-09-05',
+        description: 'Dobbeltravern er 2 × klassikeren Nordmarkstravern – tur/retur Nordberg skole til Stryken, 60 km totalt. Halvparten sti, halvparten grus.',
     },
     {
         id: 'lillomarka-rundt',
@@ -83,7 +88,8 @@ const raceRoutes = [
         url: 'https://www.sidespor.no/lop/lillomarka-rundt',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-10-25'
+        date: '2026-10-25',
+        description: 'Løpet følger 51 kilometer gjennom Lillomarka med eventyrlige stier gjennom mosekledde skoger, langs idylliske tjern og over duvende åsrygger. Ruten passerer høydepunkter som Brennberget, Røverkollen og Grefsenkollen med tilsammen 1870 høydemeter.',
     },
     {
         id: 'flyktningeruta',
@@ -94,7 +100,8 @@ const raceRoutes = [
         url: 'https://www.ostmarkatrail.no/flyktningeruta/',
         useCalculatedStats: true,
         category: 'marathon-trail',
-        date: '2026-08-26'
+        date: '2026-08-26',
+        description: 'Løypa følger en rute som ble brukt under andre verdenskrig til å følge folk ut av landet. Et krevende terrengløp på ca. 37 km gjennom Østmarka, fra Enebakk ved Øyeren til Skullerud i Oslo.',
     },
     {
         id: 'endless-shore-ultra',
@@ -106,6 +113,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100-miles',
         date: '2026-05-23',
+        description: 'En blanding av lettløpt kyststi, steinete strender, kronglete røtter, furuskog og fantastiske utsikter langs Oslofjorden fra Jeløy til Nesodden.',
     },
     {
         id: 'endless-shore-ultra-50-miles',
@@ -117,6 +125,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-05-23',
+        description: 'En blanding av lettløpt kyststi, steinete strender, kronglete røtter, furuskog og fantastiske utsikter langs Oslofjorden fra Jeløy til Nesodden.',
     },
     {
         id: 'endless-shore-ultra-50k',
@@ -128,6 +137,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-05-23',
+        description: 'En blanding av lettløpt kyststi, steinete strender, kronglete røtter, furuskog og fantastiske utsikter langs Oslofjorden fra Jeløy til Nesodden.',
     },
     {
         id: 'sandnes-100-miles',
@@ -138,7 +148,8 @@ const raceRoutes = [
         url: 'https://www.sandnes100miles.no/',
         useCalculatedStats: true,
         category: '100-miles',
-        date: '2026-04-17'
+        date: '2026-04-17',
+        description: 'Løpet går i nydelig og variert natur med alt fra fjell med vakre fjordutsikter til stille skogsstier. På den lengste distansen besøker man ikke mindre enn 28 fjell og nuter – alle rutene er svært teknisk krevende.',
     },
     {
         id: 'lofoten-ultra-trail-100-miles',
@@ -150,6 +161,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100-miles',
         date: '2026-05-28',
+        description: 'Løpet starter med båttur fra Reine gjennom Reinefjorden til Kirkefjord, og traverserer 162 km over dramatisk Lofoten-landskap med over 7000 høydemeter – fra Kirkefjorden i Moskenes til mål i Svolvær.',
     },
     {
         id: 'lofoten-ultra-trail-50-miles',
@@ -161,6 +173,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-05-28',
+        description: 'Traverserer det dramatiske Lofoten-landskapet med kystlinje, fjorder og alpine topper fra Kirkefjorden til Svolvær.',
     },
     {
         id: 'lofoten-ultra-trail-48k',
@@ -172,6 +185,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-05-28',
+        description: 'Traverserer det dramatiske Lofoten-landskapet med kystlinje, fjorder og alpine topper fra Kirkefjorden til Svolvær.',
     },
     {
         id: 'mmc-100-miles',
@@ -182,7 +196,8 @@ const raceRoutes = [
         url: 'https://mmctrail.no/100m',
         useCalculatedStats: true,
         category: '100-miles',
-        date: '2026-08-01'
+        date: '2026-08-01',
+        description: 'Løpet starter med rolig, løpbart terreng gjennom trøndersk skog, men de siste 40 km er de mest krevende – med 4000 høydemeter, myrlendt terreng, fjellplatåer og alpine topper inkludert Blåhåmmårkleppen (1007 moh).',
     },
     {
         id: 'mmc-100k',
@@ -193,7 +208,8 @@ const raceRoutes = [
         url: 'https://mmctrail.no/100k',
         useCalculatedStats: true,
         category: '100k',
-        date: '2026-08-01'
+        date: '2026-08-01',
+        description: 'Vakre stier gjennom trøndersk skog og krevende høyfjellsparti med alpine topper og myrlendt terreng i Meråker-fjellene.',
     },
     {
         id: 'mmc-70k',
@@ -204,7 +220,8 @@ const raceRoutes = [
         url: 'https://mmctrail.no/70k',
         useCalculatedStats: true,
         category: '50-miles',
-        date: '2026-08-01'
+        date: '2026-08-01',
+        description: 'Løpbart skogslandskap og vakre fjelltrakter i Meråker – en av MMC-seriens kortere men likevel krevende distanser.',
     },
     {
         id: 'hardangerjoekulen-ultra-95k',
@@ -215,7 +232,8 @@ const raceRoutes = [
         url: 'https://xtremeidfjord.no/hardangerjokulen-ultra/',
         useCalculatedStats: true,
         category: '100k',
-        date: '2026-07-11'
+        date: '2026-07-11',
+        description: 'Løypa tar deg rundt ein av Noregs vakraste isbrear, Hardangerjøkulen, gjennom fjellterreng langs DNT-ruter med nokre enkle og nokre svært teknisk krevande parti.',
     },
     {
         id: 'hardangerjoekulen-ultra-34k',
@@ -226,7 +244,8 @@ const raceRoutes = [
         url: 'https://xtremeidfjord.no/hardangerjokulen-ultra/',
         useCalculatedStats: true,
         category: 'marathon-trail',
-        date: '2026-07-11'
+        date: '2026-07-11',
+        description: 'Kortere distanse rundt Hardangerjøkulen – et enestående løp i høyfjellsterreng langs DNT-stier med isbreens majesteten som bakteppe.',
     },
     {
         id: 'oslo-trail-challenge-200k',
@@ -240,7 +259,8 @@ const raceRoutes = [
         url: 'https://langtoglenge.org/en/events_en/otc_en.html',
         useCalculatedStats: true,
         category: '100-miles-plus',
-        date: '2026-09-20'
+        date: '2026-09-20',
+        description: 'To-dagers ultraløp gjennom Nordmarka, Lillomarka og Romeriksåsen nord for Oslo – et av Norges lengste sammenhengende terrengløp.',
     },
     {
         id: 'oslo-trail-challenge-100k',
@@ -251,7 +271,8 @@ const raceRoutes = [
         url: 'https://langtoglenge.org/en/events_en/otc_en.html',
         useCalculatedStats: true,
         category: '100k',
-        date: '2026-09-27'
+        date: '2026-09-27',
+        description: 'Oslo Trail Challenge er et ultraløp gjennom skogsområdene Nordmarka, Lillomarka og Romeriksåsen nord for Oslo sentrum.',
     },
     {
         id: 'oslo-trail-challenge-55k',
@@ -262,7 +283,8 @@ const raceRoutes = [
         url: 'https://langtoglenge.org/en/events_en/otc_en.html',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-09-27'
+        date: '2026-09-27',
+        description: 'Oslo Trail Challenge 55K er en kortere distanse gjennom skogsmarkaene nord for Oslo sentrum.',
     },
     {
         id: 'lustrafjorden-inn-ultra-100',
@@ -274,6 +296,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100k',
         date: '2026-08-14',
+        description: 'Løpet går fra Kaupanger til Skjolden over ca. 104 km og 6000 høydemeter langs gamle ferdselsstier i Indre Sogn, med Hurrungane og Jotunheimen som bakteppe og kontrasten mellom hvite breer, grønne marker og turkisblå fjord.',
     },
     {
         id: 'hornindal-rundt-75k',
@@ -284,7 +307,8 @@ const raceRoutes = [
         url: 'https://hornindalrundt.no/',
         useCalculatedStats: true,
         category: '50-miles',
-        date: '2026-07-04'
+        date: '2026-07-04',
+        description: 'Traseen gjennomføres over 75 km og 5600 høydemeter, omgitt av spektakulære fjell mellom Jotunheimen og Nordsjøen. Underveis skimter man Jostedalsbreen i sør, Sunnmørsalpane i nord og havet i vest.',
     },
     {
         id: 'dynafit-hardangervidda-maraton-43k',
@@ -295,7 +319,8 @@ const raceRoutes = [
         url: 'https://xtremeidfjord.no/hardangerjokulen-ultra/',
         useCalculatedStats: true,
         category: 'marathon-trail',
-        date: '2026-08-29'
+        date: '2026-08-29',
+        description: 'Løpet går i fjellterreng i spektakulære omgivelser på Hardangervidda, med to blytunge klatreetapper og store naturopplevelser på vidda.',
     },
     {
         id: 'noesen-50k',
@@ -307,6 +332,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-06-14',
+        description: 'Kortere distanse gjennom samme tidløse fjellterreng mellom Valdres og Hemsedal – der stiene har vært livslinjer siden steinalderen.',
     },
     {
         id: 'krsultra-60',
@@ -318,7 +344,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-04-11',
-        gpxYear: 2025,
+        description: 'Utforsk det vakre, bynære terrenget som Kristiansand har å by på. KRSUltra er den perfekte måten å starte ultrasesongen på – enten du er en erfaren løper eller nysgjerrig nybegynner.',
     },
     {
         id: 'skogvokteren',
@@ -330,7 +356,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-05-02',
-        gpxYear: 2025,
+        description: 'Grenlands årlige ultrafest med lavterskel og autentisk profil på vårlige stier i overgangen april–mai.',
     },
     {
         id: 'ecotrail-oslo-80k',
@@ -342,6 +368,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-05-30',
+        description: 'Løypa går på urbane stier og tekniske stier gjennom Nordmarka og Bærumsmarka, med siste fem kilometer langs fjorden inn til felles målgang på Huk, Bygdøy.',
     },
     {
         id: 'ecotrail-oslo-50k',
@@ -352,7 +379,8 @@ const raceRoutes = [
         url: 'https://oslo.ecotrail.com/en/race-ecotrail-oslo/trail-80-km',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-05-30'
+        date: '2026-05-30',
+        description: 'Ecotrail Oslo 50K – terrengløp gjennom marka og kulturlandskapet rundt Oslo med fokus på naturopplevelse og bærekraft.',
     },
     {
         id: 'sognefjord-trail-run-50k',
@@ -363,7 +391,8 @@ const raceRoutes = [
         url: 'https://www.sognefjordtrailrun.com/50k',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-06-06'
+        date: '2026-06-06',
+        description: 'En perfekt miks av skogsstier, fjordstier og høyfjell, med en krevende stigning til Store Haugmelen (1172 moh) etterfulgt av rask nedstigning tilbake til målgang ved den majestetiske Sognefjorden.',
     },
     {
         id: 'vestfold-historic-ultra-147k',
@@ -374,7 +403,8 @@ const raceRoutes = [
         url: 'https://www.vhut.no/loyper/',
         useCalculatedStats: true,
         category: '100-miles',
-        date: '2026-06-06'
+        date: '2026-06-06',
+        description: 'Et terrengultraløp gjennom nordre Vestfold med kun 6% asfalt, 5200 høydemeter og 147 km gjennom 2 fylker og 5 kommuner – med motto «krevende men fair» og mange steder med lokalhistorisk betydning.',
     },
     {
         id: 'vestfold-historic-ultra-87k',
@@ -385,7 +415,8 @@ const raceRoutes = [
         url: 'https://www.vhut.no/loyper/',
         useCalculatedStats: true,
         category: '50-miles',
-        date: '2026-06-06'
+        date: '2026-06-06',
+        description: 'Vestfold Historic Ultra 87K – krevende terrengløp gjennom nordre Vestfold med rik lokalhistorie og minimalt med asfalt.',
     },
     {
         id: 'vestfold-historic-ultra-50k',
@@ -396,7 +427,8 @@ const raceRoutes = [
         url: 'https://www.vhut.no/loyper/',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-06-07'
+        date: '2026-06-07',
+        description: 'Vestfold Historic Ultra 50K – krevende terrengløp gjennom nordre Vestfold med rik lokalhistorie og minimalt med asfalt.',
     },
     {
         id: 'jotunheimen-trail-run',
@@ -407,7 +439,8 @@ const raceRoutes = [
         url: 'https://www.jotunheimentrailrun.com/',
         useCalculatedStats: true,
         category: '50-miles',
-        date: '2026-07-31'
+        date: '2026-07-31',
+        description: 'Løpet byr på fantastisk fjelllterreng i Jotunheimen med distanser fra 12K til 70K. Deltakerne opplever storslåtte utsikter og krevende høydeforskjeller gjennom noe av Norges råeste fjellnatur.',
     },
     {
         id: 'bodoeryggen-ultra',
@@ -418,7 +451,8 @@ const raceRoutes = [
         url: 'https://bodorunfestival.no/bodoryggen/',
         useCalculatedStats: true,
         category: 'marathon-trail',
-        date: '2026-08-01'
+        date: '2026-08-01',
+        description: 'Bodøryggen tar løperne fra fjell til fjell – Ramnfloget, Junkerfjellet, Skautuva, Løpsfjellet, Keiservarden og Rønvikfjellet – med utsikt mot Lofotveggen, Landegode og Børvasstindan.',
     },
     {
         id: 'stranda-fjord-trail-55k',
@@ -429,7 +463,8 @@ const raceRoutes = [
         url: 'https://strandafjordtrailrace.com/',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-08-12'
+        date: '2026-08-12',
+        description: 'Ny løype for 2026 – 55 km med 3800 høydemeter som tar deg fra fjordsiden til alpine rygger, gjennom frodige skogsstier og forbi fjellvann med en unik kombinasjon av kyst- og høyfjellsterreng.',
     },
     {
         id: 'stranda-fjord-trail-95k',
@@ -440,7 +475,8 @@ const raceRoutes = [
         url: 'https://strandafjordtrailrace.com/',
         useCalculatedStats: true,
         category: '100k',
-        date: '2026-08-12'
+        date: '2026-08-12',
+        description: 'Stranda Fjord Trail 95K – en lengre og enda mer krevende versjon av løypetraseen som kombinerer fjordstier, alpine rygger og høyfjellsterreng.',
     },
     {
         id: 'trollheimen-ultra-100k',
@@ -451,7 +487,8 @@ const raceRoutes = [
         url: 'https://trollheimenultra100km.webnode.page/',
         useCalculatedStats: true,
         category: '100k',
-        date: '2026-08-15'
+        date: '2026-08-15',
+        description: 'Et episk ultraløp på 100 km i hjertet av Trollheimen med 3200 høydemeter. Deltakerne møter dramatiske fjell, dype daler, krystallklare fjellvann og ekte villmark.',
     },
     {
         id: 'tromsoe-mountain-challenge-50k',
@@ -462,7 +499,8 @@ const raceRoutes = [
         url: 'https://msm.no/en/mountain-challenge/loypekart-tromso-mountain-challenge/',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-08-22'
+        date: '2026-08-22',
+        description: 'Løpet starter ved Snarbyeidet og traverserer fjellterreng inkludert den krevende stigningen til Bønntuva (760 moh) og ned gjennom Fløyfjellet, med ni sjekkpunkter gjennom det dramatiske Tromsø-landskapet.',
     },
     {
         id: 'blefjell-troll-57k',
@@ -473,7 +511,8 @@ const raceRoutes = [
         url: 'https://blefjellsbeste.com/',
         useCalculatedStats: true,
         category: '50k',
-        date: '2026-07-24'
+        date: '2026-07-24',
+        description: 'Et krevende terrengløp over Blefjell i Numedal med varierte løyper gjennom skogsterreng og åpne fjellpartier.',
     },
     {
         id: 'blefjell-storetroll-96k',
@@ -489,6 +528,309 @@ const raceRoutes = [
         url: 'https://blefjellsbeste.com/',
         useCalculatedStats: true,
         category: '100k',
-        date: '2026-07-24'
-    }
+        date: '2026-07-24',
+        description: 'Et krevende terrengløp over Blefjell i Numedal med varierte løyper gjennom skogsterreng og åpne fjellpartier.',
+    },
+    {
+        id: 'nekrotrail',
+        name: 'Nekrotrail',
+        files: ['race-calendar/Nekro/NEKROTRAIL_2026_.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#2c3e50',
+        url: 'https://www.nekrotrail.no/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-05-09',
+        description: 'BRINGING YOU SALVATION IN THE MOMENT-WORLD OF ULTRA – COMBINING DEATH WITH BREATH, HOLY WITH UNHOLY, FOOD AND FRIENDSHIP ON SPACESHIP EARTH!',
+    },
+    {
+        id: 'ultrabirken-60k',
+        name: 'Ultrabirken 60K',
+        files: ['race-calendar/Birken/UltraBirken løp 60 km.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#c0392b',
+        url: 'https://birken.no/no/lopebirken/ultrabirken-60-km',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-06-12',
+        description: 'Løpet starter på Sjusjøen Langrennsarena og går gjennom variert og krevende høyfjellsterreng til målgang ved Håkons Hall i Lillehammer, med løypas høyeste punkt på 1072 moh ved Nevelfjell.',
+    },
+    {
+        id: 'kua-ultra',
+        name: 'Kua Ultra',
+        files: ['race-calendar/Kua/activity_19359661347.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#27ae60',
+        url: 'https://www.rettnord.com/',
+        useCalculatedStats: true,
+        category: '50-miles',
+        date: '2026-06-06',
+        description: '70 km, 3000 høydemeter. Her får du litt av alt – en svært varierende løype som byr på fjære, fjelltopper, myr, sandstrand, og mye mer. Det er mange plasser å fylle på vann, og det er telefondekning hele veien.',
+    },
+    {
+        id: 'lysefjorden-inn',
+        name: 'Lysefjorden Inn',
+        files: ['race-calendar/Lysefjorden/GPX-fil Lysefjorden Inn.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#5dade2',
+        url: 'https://www.lysefjordenxtrails.com/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-06-06',
+        description: 'Et velkjent og populært ultraløp som starter på Oanes kai, går via Preikestolen basecamp og Brattelid, fortsetter inn Daladalen og opp monsterbakken til Nordrestølstjern, og ender ved Lysebotn turisthytte.',
+    },
+    {
+        id: 'bergheim-ultra-130k',
+        name: 'Bergheim Ultra 130K',
+        files: ['race-calendar/Bergheim/Bèrghem Ultra 130K .gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#8e44ad',
+        url: 'https://berghemultra.com/',
+        useCalculatedStats: true,
+        category: '100k',
+        date: '2026-06-20',
+        description: 'En ekspedisjonspreget ultraløp over Hedmarksvidda med merkede stier og grusvei gjennom fjelltopper og bjørkeskog – men det er de krevende myrene som gjør dette til et av Norges tøffeste terrengløp.',
+    },
+    {
+        id: 'helvetesmyra',
+        name: 'Helvetesmyra',
+        files: ['race-calendar/Bergheim/HM260 2026.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#6c3483',
+        url: 'https://berghemultra.com/',
+        useCalculatedStats: true,
+        category: '100-miles',
+        date: '2026-06-19',
+        description: 'Ultra Trailrunning Expedition race on Hedmarksvidda.',
+    },
+    {
+        id: 'synnfjell-skyrace',
+        name: 'Synnfjell Skyrace',
+        files: ['race-calendar/Synnfjell/Synnfjell Sky Race 2025.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#e91e63',
+        url: 'https://www.synnfjellskyrace.no/',
+        useCalculatedStats: true,
+        category: 'marathon-trail',
+        date: '2026-06-27',
+        description: 'Synnfjell Sky Race tilbyr krevende ruter gjennom spektakulært fjellterreng med start og mål ved Spåtind Fjellhotell. Den lengste løypa på 35 km inkluderer en tøff start mot Skjervungfjellet og en kongeetappe opp mot Høgkampen og Spåtindtoppen.',
+    },
+    {
+        id: 'veko-ultra',
+        name: 'Veko Ultra',
+        files: ['race-calendar/Veko/Veko Ultra 2026.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#e67e22',
+        url: 'https://ekstremsportveko.com/no/sports/trail-running/veko-ultra',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-06-27',
+        description: 'Løypa tek løparane gjennom variert terreng med tekniske stiar, stølsvegar og fine grusparti rundt Voss, med 1880 høgdemeter og 360-graders utsikt frå høgaste punkt på Skorseteggi (972 moh). Kombinér fjelløping med Ekstremsportveko-festivalen!',
+    },
+    {
+        id: 'ecotrail-bergen-65k',
+        name: 'Ecotrail Bergen 65K',
+        files: ['race-calendar/ecotrail_bergen/Ecotrail_Bergen_65km_Espelandshallen_start.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#00897b',
+        url: 'https://www.ecotrailbergen.com/',
+        useCalculatedStats: true,
+        category: '50-miles',
+        date: '2026-06-27',
+        description: 'Den lengste distansen i Ecotrail Bergen krysser Vidden og når høydepunktet ved Hauggjelsvarden (674 m), før den nedstiger mot Åsane gjennom kulturlandskap og skogsveier. Løpet avsluttes med en siste stigning over Veten (486 m) tilbake til mål.',
+    },
+    {
+        id: 'black-lake-race',
+        name: 'Black Lake Race',
+        files: ['race-calendar/BlackLake/29.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#2980b9',
+        url: 'https://blacklakerace.com/',
+        useCalculatedStats: true,
+        category: 'marathon-trail',
+        date: '2026-07-11',
+        description: 'A demanding mountain route combining runnable terrain, steep climbs, and exposed ridge running. Features a grueling ascent gaining 850+ vertical meters toward Trollstolen, high-altitude ridge running to Trolltinden (1241 m), and technical descents with spectacular fjord views.',
+    },
+    {
+        id: 'algard-sirdal',
+        name: 'Ålgård Sirdal',
+        files: ['race-calendar/Algard/COURSE_395480433.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#f39c12',
+        url: 'https://algard-sirdal.no/',
+        useCalculatedStats: true,
+        category: '50-miles',
+        date: '2026-07-04',
+        description: 'Løpet går fra fjorden til fjellene over 100 km med svært variert terreng. Ruten inkluderer en brutal stigning mot Ramnstoknuten der løperne holder seg i kjettinger, teknisk høyfjellsterreng på DNT-stier, asfaltveier og bratte nedstigninger.',
+    },
+    {
+        id: 'hoyjord-rundt-og-rundt-55k',
+        name: 'Høyjord Rundt og Rundt 55K',
+        files: ['race-calendar/Hoyjord/hoyjord-rundt-og-rundt-2024-loop-11km-22km-55km-77km.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#16a085',
+        url: 'https://www.hoyjordrundtogrundt.no/',
+        useCalculatedStats: true,
+        manualDistance: 55,
+        category: '50k',
+        date: '2026-08-15',
+        description: '55 km er fem runder av den 11 km lange løypa med ca. 470 høydemeter per runde. En herlig dag fylt med løpeglede i Vestfold!',
+    },
+    {
+        id: 'hoyjord-rundt-og-rundt-77k',
+        name: 'Høyjord Rundt og Rundt 77K',
+        files: ['race-calendar/Hoyjord/hoyjord-rundt-og-rundt-2024-loop-11km-22km-55km-77km.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#148f77',
+        url: 'https://www.hoyjordrundtogrundt.no/',
+        useCalculatedStats: true,
+        manualDistance: 77,
+        category: '50-miles',
+        date: '2026-08-15',
+        description: '77 km er syv runder av den 11 km lange løypa med ca. 470 høydemeter per runde – for de som liker å løpe hele dagen!',
+    },
+    {
+        id: 'hof-toppers',
+        name: 'Hof Toppers',
+        files: ['race-calendar/hof/hof-toppers-2024.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#7f8c8d',
+        url: 'https://hoftoppers.hof-il.no/',
+        useCalculatedStats: true,
+        category: 'marathon-trail',
+        date: '2026-08-08',
+        description: 'Løypa starter ved Hofhallen og tar deg gjennom fem toppturmål via Stokkelia, Vestfjellet, Eidstoppen, Vassbånn og Ravnåskollen med variasjon mellom grusvei og terreng.',
+    },
+    {
+        id: 'ecotrail-trondheim-80k',
+        name: 'Ecotrail Trondheim 80K',
+        files: ['race-calendar/ecotrail_trondheim/EcoTrail Trondheim 110526 80k.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#1565c0',
+        url: 'https://www.ecotrailtrondheim.com/',
+        useCalculatedStats: true,
+        category: '50-miles',
+        date: '2026-08-22',
+        description: 'Langt og vakkert – Trondheim på sitt beste! EcoTrail Trondheim 80 km er en krevende langdistanse gjennom variert natur og kulturlandskap i Trondheims omgivelser.',
+    },
+    {
+        id: 'ecotrail-trondheim-50k',
+        name: 'Ecotrail Trondheim 50K',
+        files: ['race-calendar/ecotrail_trondheim/EcoTrail Trondheim 110526 50k.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#5c85d6',
+        url: 'https://www.ecotrailtrondheim.com/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-08-22',
+        description: 'EcoTrail Trondheim 50 km er en utfordring for både erfarne og nybegynnere innen ultra, gjennom variert og vakkert terreng rundt Trondheim.',
+    },
+    {
+        id: 'styrkeproven-rett-vest',
+        name: 'Styrkeprøven Rett Vest',
+        files: ['race-calendar/Styrkeproven/styrkeproven-rett-vest-2024-styrkeproven-rett-vest-extreme-60.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#d35400',
+        url: 'https://styrkeprovenrettvest.no/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-08-29',
+        description: 'From BIR Gjenvinningstasjon Samnanger in the east to Kjøkkelvik Skole in the west – an extra challenging route stretching across the scenic Bergen peninsula both on and off the beaten track.',
+    },
+    {
+        id: 'arctic-alta-ultra-100-miles',
+        name: 'Arctic Alta Ultra 100 Miles',
+        files: ['race-calendar/ArcticAlta/Arctic Alta ultramaraton 100 miles.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#4cc9f0',
+        url: 'https://www.arcticalta.no/ULTRA/',
+        useCalculatedStats: true,
+        category: '100-miles',
+        date: '2026-08-28',
+        description: 'Løypa følger 50 km-traseen frem til ca. 20 km, deretter videre inn i fjellet og tilbake forbi Jotka Fjellstue og inn på 50 km-traseen igjen de siste 20 km. Start og mål ved Tverrelvdalen Ungdomshus.',
+    },
+    {
+        id: 'arctic-alta-ultra-100k',
+        name: 'Arctic Alta Ultra 100K',
+        files: ['race-calendar/ArcticAlta/AA-100-km.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#00b4d8',
+        url: 'https://www.arcticalta.no/ULTRA/',
+        useCalculatedStats: true,
+        category: '100k',
+        date: '2026-08-28',
+        description: '100 km med start og mål ved Tverrelvdalen Ungdomshus. Løypa tar deg gjennom storslått arktisk natur utenfor Alta.',
+    },
+    {
+        id: 'arctic-alta-ultra-51k',
+        name: 'Arctic Alta Ultra 51K',
+        files: ['race-calendar/ArcticAlta/Alta 51 km 22.aug.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#90e0ef',
+        url: 'https://www.arcticalta.no/ULTRA/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-08-28',
+        description: '51 km med start og mål ved Tverrelvdalen Ungdomshus. Løypa tar deg gjennom storslått arktisk natur utenfor Alta.',
+    },
+    {
+        id: 'nordfjordryggen-fjellop',
+        name: 'Nordfjordryggen Fjelløp',
+        files: ['race-calendar/Nordfjord/Nordfjordryggen fjelløp - offisiell løype.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#023e8a',
+        url: 'https://www.nordfjordryggenfjellop.no/fjellop',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-09-11',
+        description: 'Løypa følgjer sju fjelltoppar frå Utvikfjellet til Sandane sentrum over 30 km med 1200 meters stigning. Terrenget består av høgfjellsstigar med tekniske avsnitt og utsikt mot Nordfjorden.',
+    },
+    {
+        id: 'fyri-trail',
+        name: 'Fýri Trail',
+        files: ['race-calendar/Fyri/Fýri_Ultra_2025.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#7b2d8b',
+        url: 'https://fyriresort.com/fyri-trail-by-salomon/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-09-19',
+        description: 'Welcome to Fýri Trail, an immersive trail running event set against the stunning backdrop of the Norwegian mountains.',
+    },
+    {
+        id: 'hauern-ultra',
+        name: 'Hauern Ultra',
+        files: ['race-calendar/Hauern/hauernl-pet-2024.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#a8dadc',
+        url: 'https://www.hauern.no/next/p/53154/hauernultra',
+        useCalculatedStats: true,
+        category: 'marathon-trail',
+        date: '2026-09-19',
+        description: 'Løypa går på en god blanding av grusvei og sti gjennom nydelige områder i Drammensmarka.',
+    },
+    {
+        id: 'tyin-filefjell-extreme',
+        name: 'Tyin Filefjell Extreme',
+        files: ['race-calendar/Tyin/Tyin Filefjell Ultra 2025.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#3498db',
+        url: 'https://www.tyinfilefjell.no/arrangementer-paa-tyin-filefjell/2026/tyin-filefjell-extreme-2026/',
+        useCalculatedStats: true,
+        category: '50k',
+        date: '2026-09-05',
+        description: 'En helg fylt med løpeglede, mestring og fjellopplevelser – med høydepunktet lørdag 5. september når Tyin Filefjell Extreme sine tre spennende løpsdistanser står på programmet.',
+    },
+    {
+        id: 'trondheim-skogsmaraton',
+        name: 'Trondheim Skogsmaraton',
+        files: ['race-calendar/TrondheimSkogsmaraton/SkogHalv.gpx'],
+        gpxUpdated: '2026-06-18',
+        color: '#588157',
+        url: 'https://www.trondheimskogsmaraton.no/',
+        useCalculatedStats: true,
+        category: 'marathon-trail',
+        date: '2026-09-01',
+        description: 'Velkommen til det flotteste terrengløpet i Trondheim, med start og mål på Granåsen arena. Den flotte løypetraseen tar deg gjennom flotte omgivelser i Bymarka.',
+    },
 ];

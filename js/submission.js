@@ -40,6 +40,16 @@ function closeSubmitRaceForm() {
     document.getElementById('info-main-panel').style.display = '';
 }
 
+function showMissingRacesPanel() {
+    document.getElementById('info-main-panel').style.display = 'none';
+    document.getElementById('info-missing-panel').style.display = '';
+}
+
+function closeMissingRacesPanel() {
+    document.getElementById('info-missing-panel').style.display = 'none';
+    document.getElementById('info-main-panel').style.display = '';
+}
+
 function openEditRaceForm(raceName) {
     const race = raceRoutes.find(r => r.name === raceName);
     if (!race) return;

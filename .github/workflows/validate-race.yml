@@ -7,7 +7,7 @@ on:
 
 jobs:
   validate:
-    if: startsWith(github.head_ref, 'add-race/')
+    if: startsWith(github.head_ref, 'add-race/') || startsWith(github.head_ref, 'edit-race/')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -84,7 +84,7 @@ jobs:
               import subprocess, re
               try:
                   diff = subprocess.check_output(
-                      ['git', 'diff', '--unified=0', 'origin/main...HEAD', '--', 'app.js']
+                      ['git', 'diff', '--unified=0', 'origin/main...HEAD', '--', 'js/races.js']
                   ).decode('utf-8', errors='replace')
                   added = [float(m) for m in re.findall(r'^\+\s*manualDistance:\s*(\d+(?:\.\d+)?)', diff, re.MULTILINE)]
                   if added and max(added) >= MIN_KM:
