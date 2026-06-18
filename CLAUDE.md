@@ -87,7 +87,7 @@ gpxYear: 2025,          // shown as a warning label if GPX is from a prior year
 description: 'Text',    // shown in the race detail popup; set via submission form
 ```
 
-**Checkpoints are not stored in app.js entries.** They are loaded at runtime in `loadRace`:
+**Checkpoints are not stored in js/races.js entries.** They are loaded at runtime in `loadRace`:
 1. From `<wpt>` waypoint elements in the GPX file — preferred, set by the race organizer
 2. Auto-generated at 25/50/75% of race distance if no waypoints found
 
@@ -108,12 +108,14 @@ Checkpoints power: elevation profile marker lines, pace planner split table, and
 
 ## GPX conventions
 
-- Use track files (`<trk>`), not route or waypoint files
+- Use track files (`<trk>`), not route or waypoint files — the CI validator requires `<trkpt>` elements
 - Include `<ele>` elevation data — powers the elevation profile and pace planner
 - Add `<wpt>` elements for aid stations — they become pace planner checkpoint splits automatically
 - Multi-segment races: list GPX files in order under `files`
-- Prefer official organizer GPX over Strava exports
+- Prefer official organizer GPX over Strava exports (Strava recordings can have 40K+ points)
 - After replacing a GPX file, update `gpxUpdated` in the race entry to today's date
+
+**Parser behavior (`gpx-parser.js`):** supports both `<trkpt>` (track) and `<rtept>` (route) formats — falls back to `<rtept>` if no track points found. Dense recordings are automatically downsampled to ≤ 3000 points for rendering performance; the full file is still downloaded by the browser.
 
 ## Loop races
 
@@ -162,7 +164,7 @@ Users submit new races and propose edits via "Mangler det et løp?" in the info 
 
 **`validate-race.yml`** — triggers on `add-race/*` and `edit-race/*` PR branches:
 - Validates GPX has `<trkpt>` track points and total distance ≥ 30 km
-- Loop race exception: if GPX < 30 km, checks `manualDistance` in the app.js diff instead
+- Loop race exception: if GPX < 30 km, checks `manualDistance` in the `js/races.js` diff instead
 - Comments result on the PR; squash-merges and deletes branch on pass
 
 ## Updating `gpxUpdated` for all races

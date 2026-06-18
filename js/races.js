@@ -53,7 +53,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100-miles',
         date: '2026-05-30',
-        description: 'Ultra-terrengløp fra Soria Moria i Voksenkollen i Oslo til Verdens Ende på Tjøme i Vestfold – en klassiker i kategorien 100 miles+.',
+        description: 'Et ultra-terrengløp med start på Soria Moria i Voksenkollen i Oslo og mål på Verdens Ende på Tjøme i Vestfold. I arrangementet inngår også ultra-distansen 50 miles+ fra Sande til Verdens Ende.',
     },
     {
         id: 'noesen-hundreds',
@@ -173,7 +173,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-05-28',
-        description: 'Traverserer det dramatiske Lofoten-landskapet med kystlinje, fjorder og alpine topper fra Kirkefjorden til Svolvær.',
+        description: 'Løpet dekker 88 kilometer med over 3500 høydemeter gjennom dramatisk fjellandskap på Lofoten, fra Leknes til Svolvær. Hele løypa er merket og viser frem den spektakulære arktiske naturen på øygruppen.',
     },
     {
         id: 'lofoten-ultra-trail-48k',
@@ -185,7 +185,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-05-28',
-        description: 'Traverserer det dramatiske Lofoten-landskapet med kystlinje, fjorder og alpine topper fra Kirkefjorden til Svolvær.',
+        description: 'Løpet går 48 kilometer med over 2500 høydemeter fra Torvdalshalsen på Vestvågøy til Svolvær på Austvågøy, med en brutal start opp fjellet til en lang rygg med enestående utsikt.',
     },
     {
         id: 'mmc-100-miles',
@@ -209,7 +209,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100k',
         date: '2026-08-01',
-        description: 'Vakre stier gjennom trøndersk skog og krevende høyfjellsparti med alpine topper og myrlendt terreng i Meråker-fjellene.',
+        description: 'Løpet starter i Meråker sentrum og de første 30 kilometerne går opp til Nøstmo, før ruten følger 70k-løypa over ni topper. Med 4750 høydemeter gjennom fjell- og myrterreng er dette en teknisk krevende ultraløype.',
     },
     {
         id: 'mmc-70k',
@@ -221,7 +221,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-08-01',
-        description: 'Løpbart skogslandskap og vakre fjelltrakter i Meråker – en av MMC-seriens kortere men likevel krevende distanser.',
+        description: '70-kilometersløypa har 4000 høydemeter og krysser ni topper over 1000 meter gjennom varierende terreng med myr, nakent fjell og skogssti.',
     },
     {
         id: 'hardangerjoekulen-ultra-95k',
@@ -245,7 +245,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: 'marathon-trail',
         date: '2026-07-11',
-        description: 'Kortere distanse rundt Hardangerjøkulen – et enestående løp i høyfjellsterreng langs DNT-stier med isbreens majesteten som bakteppe.',
+        description: 'Løpet går gjennom høyfjellsterreng rundt Hardangerjøkulen og følger DNTs rutenett med varierende teknisk vanskelighetsgrad. Løypa inkluderer høytliggende fjellterreng med mulig snødekke.',
     },
     {
         id: 'oslo-trail-challenge-200k',
@@ -260,7 +260,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100-miles-plus',
         date: '2026-09-20',
-        description: 'To-dagers ultraløp gjennom Nordmarka, Lillomarka og Romeriksåsen nord for Oslo – et av Norges lengste sammenhengende terrengløp.',
+        description: 'The Oslo Trail Challenge is an ultra-trail race through the forest areas of Nordmarka, Lillomarka, and Romeriksåsen north of Oslo city centre. The 200km course requires self-navigation using GPS tracks or paper maps.',
     },
     {
         id: 'oslo-trail-challenge-100k',
@@ -284,7 +284,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-09-27',
-        description: 'Oslo Trail Challenge 55K er en kortere distanse gjennom skogsmarkaene nord for Oslo sentrum.',
+        description: 'The Oslo Trail Challenge 55km traverses the forest areas of Nordmarka, Lillomarka, and Romeriksåsen north of Oslo city centre, requiring self-navigation using GPS tracks or paper maps.',
     },
     {
         id: 'lustrafjorden-inn-ultra-100',
@@ -332,7 +332,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-06-14',
-        description: 'Kortere distanse gjennom samme tidløse fjellterreng mellom Valdres og Hemsedal – der stiene har vært livslinjer siden steinalderen.',
+        description: '50-kilometersløypa har 1900 høydemeter med bratte stigninger og en krevende fjelltravars, og starter med en umiddelbar 550-meters stigning til Nøsakampen. Ruten fortsetter over Gilafjellet og avsluttes med en push over Grønsenknippa.',
     },
     {
         id: 'krsultra-60',
@@ -380,7 +380,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-05-30',
-        description: 'Ecotrail Oslo 50K – terrengløp gjennom marka og kulturlandskapet rundt Oslo med fokus på naturopplevelse og bærekraft.',
+        description: 'Fra start i Holmenkollen med panoramautsikt over Oslo, gjennom Sørkedalen og Bogstadvannet, ned langs teknisk og kupert Lysakerelva og videre langs Oslofjorden til målgang på Huk, Bygdøy. Løypa kombinerer grusveier og teknisk sti.',
     },
     {
         id: 'sognefjord-trail-run-50k',
@@ -416,7 +416,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50-miles',
         date: '2026-06-06',
-        description: 'Vestfold Historic Ultra 87K – krevende terrengløp gjennom nordre Vestfold med rik lokalhistorie og minimalt med asfalt.',
+        description: '87-kilometersløypa har 3000 høydemeter og kun 2,6 km asfalt gjennom variert fjell- og skogslandskap i Vestfold.',
     },
     {
         id: 'vestfold-historic-ultra-50k',
@@ -428,7 +428,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-06-07',
-        description: 'Vestfold Historic Ultra 50K – krevende terrengløp gjennom nordre Vestfold med rik lokalhistorie og minimalt med asfalt.',
+        description: '50-kilometersløypa har 1530 høydemeter og kun 2,4 km asfalt gjennom fjell- og skogslandskap i Vestfold.',
     },
     {
         id: 'jotunheimen-trail-run',
@@ -476,7 +476,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100k',
         date: '2026-08-12',
-        description: 'Stranda Fjord Trail 95K – en lengre og enda mer krevende versjon av løypetraseen som kombinerer fjordstier, alpine rygger og høyfjellsterreng.',
+        description: 'The 95km route covers 6800 meters of ascending and descending, connecting two fjords and four villages across the scenic Sunnmøre region. Runners traverse multiple fjord valleys and mountain terrain between fjord communities.',
     },
     {
         id: 'trollheimen-ultra-100k',
@@ -512,7 +512,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '50k',
         date: '2026-07-24',
-        description: 'Et krevende terrengløp over Blefjell i Numedal med varierte løyper gjennom skogsterreng og åpne fjellpartier.',
+        description: 'Terrengløp på Blefjell som passerer flere av de flotteste plassene på Store-Ble. Sosialt og uformelt løp med tilbud til alle som liker å bevege seg ute i skog og fjell.',
     },
     {
         id: 'blefjell-storetroll-96k',
@@ -529,7 +529,7 @@ const raceRoutes = [
         useCalculatedStats: true,
         category: '100k',
         date: '2026-07-24',
-        description: 'Et krevende terrengløp over Blefjell i Numedal med varierte løyper gjennom skogsterreng og åpne fjellpartier.',
+        description: 'Terrengløp på Blefjell som passerer flere av de flotteste plassene på Store-Ble. Sosialt og uformelt løp med tilbud til alle som liker å bevege seg ute i skog og fjell.',
     },
     {
         id: 'nekrotrail',
