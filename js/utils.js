@@ -79,11 +79,12 @@ function haversineKm(lat1, lon1, lat2, lon2) {
 }
 
 function distanceToCategory(km) {
+    if (km < 42) return 'short-trail';
     if (km < 50) return 'marathon-trail';
     if (km < 65) return '50k';
     if (km < 130) return '50-miles';
     if (km < 160) return '100k';
-    if (km < 500) return '100-miles';
+    if (km < 165) return '100-miles';
     return '100-miles-plus';
 }
 

@@ -25,10 +25,11 @@ const darkColorPool = [
 ];
 
 const raceCategories = [
-    { id: 'marathon-trail', name: '<50K' },
-    { id: '50k', name: '50K' },
-    { id: '50-miles', name: '50 Miles' },
-    { id: '100k', name: '100K' },
-    { id: '100-miles', name: '100 Miles' },
-    { id: '100-miles-plus', name: '100 Miles+' }
+    { id: 'short-trail', name: 'Kortdistanse (<42 km)' },
+    { id: 'marathon-trail', name: 'Maraton (42–50 km)' },
+    { id: '50k', name: '50 km' },
+    { id: '50-miles', name: '80 km' },
+    { id: '100k', name: '100 km' },
+    { id: '100-miles', name: '100 miles (~160 km)' },
+    { id: '100-miles-plus', name: '100+ miles (165+ km)' }
 ];

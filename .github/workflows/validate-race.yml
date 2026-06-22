@@ -26,9 +26,11 @@ jobs:
 
       - name: Validate GPX files
         id: validate
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
           python3 - << 'PYEOF'
-          import sys, math
+          import sys, os, math
           from pathlib import Path
           from xml.etree import ElementTree as ET
 
@@ -48,8 +50,71 @@ jobs:
               files = [l.strip() for l in f if l.strip().endswith('.gpx')]
 
           if not files:
-              print("ERROR: No GPX files found in this PR")
-              sys.exit(1)
+              if not os.environ.get('HEAD_REF', '').startswith('edit-race/'):
+                  print("ERROR: No GPX files found in this PR")
+                  sys.exit(1)
+
+              # Edit PR with no new GPX: validate the updated entry fields from the races.js diff
+              import subprocess, re
+              from datetime import datetime
+
+              VALID_CATEGORIES = {'short-trail', 'marathon-trail', '50k', '50-miles', '100k', '100-miles', '100-miles-plus'}
+
+              try:
+                  diff = subprocess.check_output(
+                      ['git', 'diff', '--unified=0', 'origin/main...HEAD', '--', 'js/races.js']
+                  ).decode('utf-8', errors='replace')
+              except Exception as e:
+                  print(f"ERROR: could not read races.js diff: {e}")
+                  sys.exit(1)
+
+              added = '\n'.join(l[1:] for l in diff.splitlines() if l.startswith('+') and not l.startswith('+++'))
+              entry_errors = []
+
+              name_m = re.search(r'''name:\s*["']([^"']+)["']''', added)
+              if not name_m or not name_m.group(1).strip():
+                  entry_errors.append("name is missing or empty")
+              else:
+                  print(f"  Name: {name_m.group(1)}")
+
+              date_m = re.search(r'''date:\s*["'](\d{4}-\d{2}-\d{2})["']''', added)
+              if not date_m:
+                  entry_errors.append("date is missing or not in YYYY-MM-DD format")
+              else:
+                  try:
+                      datetime.strptime(date_m.group(1), '%Y-%m-%d')
+                      print(f"  Date: {date_m.group(1)}")
+                  except ValueError:
+                      entry_errors.append(f"date '{date_m.group(1)}' is not a valid calendar date")
+
+              cat_m = re.search(r'''category:\s*["']([^"']+)["']''', added)
+              if not cat_m:
+                  entry_errors.append("category is missing")
+              elif cat_m.group(1) not in VALID_CATEGORIES:
+                  entry_errors.append(f"category '{cat_m.group(1)}' is invalid (must be one of: {', '.join(sorted(VALID_CATEGORIES))})")
+              else:
+                  print(f"  Category: {cat_m.group(1)}")
+
+              url_m = re.search(r'''url:\s*["']([^"']+)["']''', added)
+              if url_m and not url_m.group(1).startswith(('http://', 'https://')):
+                  entry_errors.append(f"url must start with http:// or https://")
+
+              gpx_refs = re.findall(r'''["']([^"']+\.gpx)["']''', added)
+              if not gpx_refs:
+                  entry_errors.append("no GPX file references found in updated entry")
+              for gp in gpx_refs:
+                  if not Path(gp).exists():
+                      entry_errors.append(f"referenced GPX file not found in repo: {gp}")
+                  else:
+                      print(f"  GPX exists: {gp} ✓")
+
+              if entry_errors:
+                  for e in entry_errors:
+                      print(f"ERROR: {e}")
+                  sys.exit(1)
+
+              print("Entry data validation passed ✓")
+              sys.exit(0)
 
           for path in files:
               if not Path(path).exists():
@@ -106,8 +171,8 @@ jobs:
           script: |
             const passed = '${{ steps.validate.outcome }}' === 'success';
             const body = passed
-              ? '✅ **Validering OK** — GPX-filen er gyldig og løypen er over 30 km. Merger automatisk!'
-              : '❌ **Validering feilet** — Sjekk at GPX-filen inneholder sporpunkter (`<trkpt>`) og at total distanse er over 30 km. Se logg for detaljer.';
+              ? '✅ **Validering OK** — Merger automatisk!'
+              : '❌ **Validering feilet** — Se logg for detaljer.';
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,

@@ -99,7 +99,8 @@ Checkpoints power: elevation profile marker lines, pace planner split table, and
 
 | Category value | Distance |
 |---|---|
-| `marathon-trail` | < 50K |
+| `short-trail` | < 42K |
+| `marathon-trail` | 42–50 km |
 | `50k` | 50–65 km |
 | `50-miles` | 65–130 km |
 | `100k` | 130–160 km |

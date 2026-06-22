@@ -30,11 +30,12 @@ function slugify(name) {
 }
 
 function distanceToCategory(km) {
+    if (km < 42) return 'short-trail';
     if (km < 50) return 'marathon-trail';
     if (km < 65) return '50k';
     if (km < 130) return '50-miles';
     if (km < 160) return '100k';
-    if (km < 500) return '100-miles';
+    if (km < 165) return '100-miles';
     return '100-miles-plus';
 }
 
@@ -119,8 +120,8 @@ function buildRaceEntry(raceData) {
 
 function buildPRBody({ name, url, date, description, category, loopDistances, isEdit, originalName, submitter }) {
     const catLabels = {
-        'marathon-trail': '< 50K', '50k': '50K', '50-miles': '50 Miles',
-        '100k': '100K', '100-miles': '100 Miles', '100-miles-plus': '100 Miles+'
+        'short-trail': '< 42 km', 'marathon-trail': '42–50 km', '50k': '50 km', '50-miles': '80 km',
+        '100k': '100 km', '100-miles': '100 miles (~160 km)', '100-miles-plus': '100+ miles'
     };
     const title = isEdit ? `## Endring: ${originalName}` : `## Nytt løp: ${name}`;
     const rows = [title, '', '| Felt | Verdi |', '|---|---|'];
