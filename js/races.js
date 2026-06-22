@@ -1,6 +1,17 @@
 // GPX race routes configuration
 const raceRoutes = [
     {
+        id: "smve-soria-moria-til-verdens-ende",
+        name: "SMVE - Soria Moria til Verdens Ende",
+        files: ["race-calendar/SoriaMoriaTilVerdensEnde/SMVE_2024_100_miles_02.gpx"],
+        color: "#b5179e",
+        url: "https://soriamoriatilverdensende.com",
+        description: "Terrengultraløp på sti, traktorvei, grusvei og litt asfalt fra Soria Moria i Oslo til Verdens Ende på Tjøme.",
+        useCalculatedStats: true,
+        category: "100-miles",
+        date: "2026-05-30"
+    },
+    {
         id: 'norefjell-trail-42k',
         name: 'Norefjell Trail 42K',
         files: ['race-calendar/Norefjell/NorefjellTrail-42K.gpx'],
@@ -54,18 +65,6 @@ const raceRoutes = [
         category: '100-miles-plus',
         date: '2027-07-01',
         description: 'Oslo-Bergen Trail er et terrengultraløp fra Oslo til Bergen, arrangert første gang i 2021. Distansene spenner fra Gullbotn-Bergen 37K til Oslo-Bergen 500K for individuelle deltakere og lag.',
-    },
-    {
-        id: 'smve-soria-moria-til-verdens-ende',
-        name: 'SMVE - Soria Moria til Verdens Ende',
-        files: ['race-calendar/SoriaMoriaTilVerdensEnde/SMVE_2024_100_miles_02.gpx'],
-        gpxUpdated: '2026-01-30',
-        color: '#9b59b6',
-        url: 'https://soriamoriatilverdensende.com',
-        useCalculatedStats: true,
-        category: '100-miles',
-        date: '2026-05-30',
-        description: 'Et ultra-terrengløp med start på Soria Moria i Voksenkollen i Oslo og mål på Verdens Ende på Tjøme i Vestfold. I arrangementet inngår også ultra-distansen 50 miles+ fra Sande til Verdens Ende.',
     },
     {
         id: 'noesen-hundreds',
