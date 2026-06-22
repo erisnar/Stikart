@@ -89,6 +89,7 @@ async function selectRace(raceName) {
     const race = raceRoutes.find(r => r.name === raceName);
     if (!race) return;
 
+    document.activeElement.blur();
     selectedRaceName = raceName;
 
     if (currentSearchFilter) clearSearch();
@@ -127,7 +128,9 @@ function panToRace(raceName) {
     polylines.forEach(pl => bounds.extend(pl.getBounds()));
 
     map.fitBounds(bounds, {
-        padding: isMobile ? [50, 50] : [100, 100],
+        ...(isMobile
+            ? { paddingTopLeft: [50, 50], paddingBottomRight: [50, 180] }
+            : { padding: [100, 100] }),
         maxZoom: 13
     });
 }

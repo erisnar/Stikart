@@ -58,7 +58,8 @@ function openEditRaceForm(raceName) {
         originalId: race.id || slugify(raceName),
         originalName: raceName,
         originalFiles: race.files,
-        originalColor: race.color
+        originalColor: race.color,
+        originalCategory: race.category
     };
     _resetSubmitForm();
     _setFormMode(true);
@@ -202,7 +203,7 @@ async function handleRaceSubmit(event) {
             date: document.getElementById('race-date-input').value,
             description: document.getElementById('race-description-input').value.trim(),
             submitter: document.getElementById('race-submitter-input').value.trim() || undefined,
-            category: effectiveDistance ? distanceToCategory(effectiveDistance) : undefined,
+            category: effectiveDistance ? distanceToCategory(effectiveDistance) : (isEdit ? _editMode.originalCategory : undefined),
             loopDistances: loopDistances || undefined,
             originalId: isEdit ? _editMode.originalId : undefined,
             originalName: isEdit ? _editMode.originalName : undefined,

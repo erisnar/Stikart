@@ -541,6 +541,7 @@ body {
 
 .race-panel.expanded {
     transform: translateY(0);
+    height: 70vh;
 }
 
 .race-panel-handle {

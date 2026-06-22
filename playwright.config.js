@@ -17,7 +17,7 @@ module.exports = defineConfig({
     projects: [
         {
             name: 'desktop',
-            testMatch: /(desktop|shared)\.spec\.js/,
+            testMatch: /(desktop|shared|submission)\.spec\.js/,
             use: { ...devices['Desktop Chrome'] },
         },
         {

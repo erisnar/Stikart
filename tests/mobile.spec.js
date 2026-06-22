@@ -80,6 +80,46 @@ test('tapping the chart moves the locked cursor to the tapped position', async (
     expect(await page.evaluate(() => dotFrozen)).toBe(true);
 });
 
+test('panel stays at full height while search narrows results', async ({ page }) => {
+    await page.goto('/index.html');
+
+    // Set up transitionend listener before tapping so we don't miss it.
+    // CDP messages are ordered, so the listener is added before the tap is processed.
+    const panelSettled = page.locator('#race-panel').evaluate(panel =>
+        new Promise(resolve => panel.addEventListener('transitionend', resolve, { once: true }))
+    );
+    await page.getByRole('button', { name: 'Velg løp fra listen' }).tap();
+    await panelSettled;
+
+    await expect.poll(() => page.locator('.race-item').count()).toBeGreaterThan(5);
+    const before = await page.locator('#race-panel').boundingBox();
+
+    // Narrow to one result — panel must not shrink and drop the search input off-screen
+    await page.locator('#search-input').fill('nsm');
+    await expect(page.locator('.race-item')).toHaveCount(1);
+
+    const after = await page.locator('#race-panel').boundingBox();
+    expect(after.height).toBeCloseTo(before.height, 0);
+    expect(after.y).toBeCloseTo(before.y, 0);
+});
+
+test('selecting a race from search blurs the input to dismiss the keyboard', async ({ page }) => {
+    await page.goto('/index.html');
+    const panelSettled = page.locator('#race-panel').evaluate(panel =>
+        new Promise(resolve => panel.addEventListener('transitionend', resolve, { once: true }))
+    );
+    await page.getByRole('button', { name: 'Velg løp fra listen' }).tap();
+    await panelSettled;
+
+    await page.locator('#search-input').fill('nsm');
+    await expect(page.locator('.race-item')).toHaveCount(1);
+
+    await page.locator('.race-item').first().tap();
+
+    const focused = await page.evaluate(() => document.activeElement.id);
+    expect(focused).not.toBe('search-input');
+});
+
 test('selecting a race highlights only that route on the map', async ({ page }) => {
     await openRaceDeepLink(page);
 

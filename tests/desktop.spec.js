@@ -74,16 +74,17 @@ test('clicking a route on the map opens its race detail', async ({ page }) => {
         { timeout: 15000 }
     ).toBeGreaterThan(0);
 
-    // Center the map on the middle of the test race route, then click it
-    const pt = await page.evaluate(name => {
-        const latlngs = racePolylines[name][0].getLatLngs();
+    // Fire the click directly on the transparent hit-area polyline rather than
+    // using screen coordinates. Leaflet async tile ops between panTo and the
+    // actual mouse event can shift the canvas under parallel load, causing
+    // sub-pixel misses against the 50px hit area.
+    await page.evaluate(name => {
+        const hitArea = hitAreaPolylines[name][0];
+        const latlngs = hitArea.getLatLngs();
         const ll = latlngs[Math.floor(latlngs.length / 2)];
         map.panTo(ll, { animate: false });
-        const p = map.latLngToContainerPoint(ll);
-        return { x: p.x, y: p.y };
+        hitArea.fire('click', { latlng: ll });
     }, TEST_RACE.name);
-    const mapBox = await page.locator('#map').boundingBox();
-    await page.mouse.click(mapBox.x + pt.x, mapBox.y + pt.y);
 
     // Overlapping routes open a picker popup instead of selecting directly
     const overlay = page.locator('#race-detail-overlay');
