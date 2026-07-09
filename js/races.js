@@ -1,6 +1,18 @@
 // GPX race routes configuration
 const raceRoutes = [
     {
+        id: "kristiansund-havmaraton",
+        name: "Kristiansund Havmaraton",
+        files: ["race-calendar/kristiansund-havmaraton/havmaraton-23km.gpx"],
+        color: "#1565c0",
+        url: "https://havmaraton.no/",
+        description: "Løp på kyststi, langs kaianlegg og maritimt miljø, over svaberg og gjennom kystlynghei mens bølgene slår inn over land og sjøsprøyten står",
+        gpxUpdated: "2026-07-09",
+        useCalculatedStats: true,
+        category: "short-trail",
+        date: "2026-06-27"
+    },
+    {
         id: "smve-soria-moria-til-verdens-ende",
         name: "SMVE - Soria Moria til Verdens Ende",
         files: ["race-calendar/SoriaMoriaTilVerdensEnde/SMVE_2024_100_miles_02.gpx"],
