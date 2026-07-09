@@ -4,10 +4,9 @@ const raceRoutes = [
         id: "kristiansund-havmaraton",
         name: "Kristiansund Havmaraton",
         files: ["race-calendar/kristiansund-havmaraton/havmaraton-23km.gpx"],
-        color: "#1565c0",
+        color: "#3a86ff",
         url: "https://havmaraton.no/",
-        description: "Løp på kyststi, langs kaianlegg og maritimt miljø, over svaberg og gjennom kystlynghei mens bølgene slår inn over land og sjøsprøyten står",
-        gpxUpdated: "2026-07-09",
+        description: "Løp på kyststi, langs kaianlegg og maritimt miljø, over svaberg og gjennom kystlynghei mens bølgene slår inn over land og sjøsprøyten står.",
         useCalculatedStats: true,
         category: "short-trail",
         date: "2026-06-27"
