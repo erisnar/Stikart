@@ -128,3 +128,22 @@ test('selecting a race highlights only that route on the map', async ({ page }) 
         return { weight: pl.weight, opacity: pl.opacity };
     }, TEST_RACE.name)).toEqual({ weight: 5, opacity: 1 });
 });
+
+test('GPX download button downloads a .gpx file', async ({ page }) => {
+    const minimalGpx = '<?xml version="1.0"?><gpx><trk><trkseg><trkpt lat="0" lon="0"><ele>0</ele></trkpt></trkseg></trk></gpx>';
+    await page.route(/raw\.githubusercontent\.com/, route =>
+        route.fulfill({ contentType: 'application/gpx+xml', body: minimalGpx }));
+
+    await openRaceDeepLink(page);
+
+    // On mobile the detail starts minimized — .race-popup-details (which holds
+    // the download link) is hidden until the card is expanded
+    await page.locator('#minimize-detail').tap();
+    await expect(page.locator('#race-detail-overlay')).not.toHaveClass(/minimized/);
+
+    const [download] = await Promise.all([
+        page.waitForEvent('download'),
+        page.locator('.race-download-link').first().tap(),
+    ]);
+    expect(download.suggestedFilename()).toMatch(/\.gpx$/);
+});

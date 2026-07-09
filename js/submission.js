@@ -18,7 +18,7 @@ function _setFormMode(isEdit) {
     document.getElementById('submit-form-title').textContent = isEdit ? 'Foreslå endring' : 'Legg til løp';
     document.getElementById('submit-form-intro').textContent = isEdit
         ? 'Endre informasjon om løpet. Last kun opp ny GPX-fil ved endring av løype.'
-        : 'Fyll inn info og last opp GPX-filen. Løpet legges til automatisk hvis GPX-en er gyldig og distansen er over 30 km.';
+        : 'Fyll inn info og last opp GPX-filen. Løpet legges til automatisk hvis GPX-en er gyldig og distansen er over 10 km.';
     document.getElementById('gpx-required-label').textContent = isEdit ? '' : '*';
     document.getElementById('gpx-file-input').required = !isEdit;
     document.getElementById('gpx-edit-hint').style.display = isEdit ? '' : 'none';
@@ -108,10 +108,10 @@ function onGpxFileSelect(input) {
         statsEl.textContent = `${result.distance.toFixed(1)} km · ${result.elevation} hm · ${result.points} punkter${cpNote}`;
         statsEl.className = 'gpx-stats gpx-stats-ok';
         statsEl.style.display = '';
-        const isLoop = result.distance < 30;
+        const isLoop = result.distance < 10;
         if (isLoop && manualGroup.style.display === 'none') {
             document.getElementById('loop-distances-list').innerHTML = '';
-            addLoopDistance();
+            addLoopDistance(Math.round(result.distance * 10) / 10);
         }
         manualGroup.style.display = isLoop ? '' : 'none';
     };
@@ -182,13 +182,13 @@ async function handleRaceSubmit(event) {
         loopDistances = entries.map(el => ({
             km: parseFloat(el.querySelector('.loop-dist-km').value)
         }));
-        if (loopDistances.some(e => isNaN(e.km) || e.km < 30)) {
-            showError('Alle distanser må være minst 30 km.');
+        if (loopDistances.some(e => isNaN(e.km) || e.km < 10)) {
+            showError('Alle distanser må være minst 10 km.');
             return;
         }
         effectiveDistance = Math.max(...loopDistances.map(e => e.km));
-    } else if (!isEdit && effectiveDistance !== null && effectiveDistance < 30) {
-        showError(`Distansen er for kort (${effectiveDistance.toFixed(1)} km). Minimum 30 km.`);
+    } else if (!isEdit && effectiveDistance !== null && effectiveDistance < 10) {
+        showError(`Distansen er for kort (${effectiveDistance.toFixed(1)} km). Minimum 10 km.`);
         return;
     }
 

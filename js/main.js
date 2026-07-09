@@ -32,14 +32,43 @@ function downloadGpx(url, fileName) {
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = fileName;
+            document.body.appendChild(link);
             link.click();
-            URL.revokeObjectURL(link.href);
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 1000);
         })
         .catch(err => console.error('Download failed:', err));
 }
 
+// ── Structured data ─────────────────────────────────────────────────────────
+
+function injectStructuredData() {
+    const itemListElement = raceRoutes.map((race, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+            '@type': 'SportsEvent',
+            name: race.name,
+            startDate: race.date,
+            url: race.url,
+            description: race.description,
+            location: { '@type': 'Place', name: race.name + ', Norge' },
+        },
+    }));
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement,
+    });
+    document.head.appendChild(script);
+}
+
 // ── Startup ───────────────────────────────────────────────────────────────────
 
+injectStructuredData();
 regenerateColors();
 
 const params = new URLSearchParams(window.location.search);
@@ -67,5 +96,20 @@ if (priorityRace) {
 
 map.on('click', () => {
     if (racePickerPopup) { map.closePopup(racePickerPopup); racePickerPopup = null; }
-    if (selectedRaceName) closeRaceDetail();
+    // Clicking empty map unfocuses the race and closes its detail panel/sidebar.
+    if (focusedRaceName) closeRaceDetail();
+});
+
+window.addEventListener('popstate', () => {
+    const raceSlug = new URLSearchParams(window.location.search).get('race');
+    if (raceSlug) {
+        const race = raceBySlug(raceSlug);
+        if (race && race.name !== selectedRaceName) {
+            const isLoaded = racePolylines[race.name] && racePolylines[race.name].length > 0;
+            if (isLoaded) selectRace(race.name);
+            else loadRace(race).then(() => selectRace(race.name));
+        }
+    } else if (selectedRaceName) {
+        closeRaceDetail();
+    }
 });

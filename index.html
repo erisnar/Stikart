@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stikart</title>
+    <title>Stikart – interaktivt kart over ultraløp og terrengløp i Norge</title>
+    <meta name="description" content="Utforsk ultraløp og terrengløp i Norge på et interaktivt kart. Se løyper, distanser og høydemeter, og last ned GPX for løp som Lommedalen Rundt, Norefjell Trail og NSM Ultra.">
+    <link rel="canonical" href="https://stikart.no/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <meta property="og:title" content="Stikart – ultraløp i Norge">
+    <meta property="og:description" content="Interaktivt kart over ultraløp og terrengløp i Norge. Se løyper, distanser og høydemeter, og last ned GPX.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stikart.no/">
+    <meta property="og:locale" content="nb_NO">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Stikart",
+      "url": "https://stikart.no/",
+      "description": "Interaktivt kart over ultraløp og terrengløp i Norge.",
+      "inLanguage": "nb-NO"
+    }
+    </script>
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -12,6 +31,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1 class="sr-only">Stikart – interaktivt kart over ultraløp og terrengløp i Norge</h1>
     <div id="map"></div>
     <div id="filter-bar">
         <div class="filter-btn-row">
@@ -147,11 +167,12 @@
                     <li><strong>Kartlag-knappen</strong> oppe til høyre lar deg bytte mellom Norgeskart og OpenStreetMap</li>
                 </ul>
 
-                <h3>Bidra</h3>
-                <p>Stikart er et åpent prosjekt. Har du forslag til nye løp, feil å rapportere, eller ønsker å bidra med kode?</p>
-                <a href="https://github.com/erisnar/stikart" target="_blank" rel="noopener noreferrer" class="info-link">
-                    Se prosjektet på GitHub →
-                </a>
+                <div class="submit-race-teaser">
+                    <h3>Mangler det et løp?</h3>
+                    <p>Send inn GPX-filen og vi legger løpet til på kartet.</p>
+                    <button class="info-link submit-race-teaser-btn" onclick="showSubmitRaceForm()">Legg til løp →</button>
+                    <button class="info-link submit-race-teaser-btn" onclick="showMissingRacesPanel()" style="margin-top:8px">Løp uten løype →</button>
+                </div>
 
                 <h3>Kartdata</h3>
                 <p>Kartet bruker <a href="https://www.kartverket.no/" target="_blank">Kartverket</a> (Norgeskart) og <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> som bakgrunnskart.</p>
@@ -161,12 +182,11 @@
                 <p>stikart.no lagrer trafikk for nettstedet. Statistikken viser hvor mye hvert enkelt område av nettstedet blir besøkt. Vi kan ikke spore din bruk av nettstedet tilbake til deg som enkeltperson.</p>
                 <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer" class="info-link">Les mer om personvern hos GoatCounter →</a>
 
-                <div class="submit-race-teaser">
-                    <h3>Mangler det et løp?</h3>
-                    <p>Send inn GPX-filen og vi legger løpet til på kartet.</p>
-                    <button class="info-link submit-race-teaser-btn" onclick="showSubmitRaceForm()">Legg til løp →</button>
-                    <button class="info-link submit-race-teaser-btn" onclick="showMissingRacesPanel()" style="margin-top:8px">Løp uten løype →</button>
-                </div>
+                <h3>Bidra</h3>
+                <p>Stikart er et åpent prosjekt. Har du forslag til nye løp, feil å rapportere, eller ønsker å bidra med kode?</p>
+                <a href="https://github.com/erisnar/stikart" target="_blank" rel="noopener noreferrer" class="info-link">
+                    Se prosjektet på GitHub →
+                </a>
             </div>
 
             <!-- Missing races panel -->
@@ -217,7 +237,7 @@
             <div id="info-submit-panel" class="info-content" style="display:none">
                 <button class="submit-race-back" onclick="closeSubmitRaceForm()">← Tilbake</button>
                 <h2 id="submit-form-title">Legg til løp</h2>
-                <p id="submit-form-intro" class="submit-race-intro">Fyll inn info og last opp GPX-filen. Løpet legges til automatisk hvis GPX-en er gyldig og distansen er over 30 km.</p>
+                <p id="submit-form-intro" class="submit-race-intro">Fyll inn info og last opp GPX-filen. Løpet legges til automatisk hvis GPX-en er gyldig og distansen er over 10 km.</p>
 
                 <form id="submit-race-form" onsubmit="handleRaceSubmit(event)">
                     <input type="hidden" id="original-race-id" value="">

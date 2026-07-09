@@ -34,7 +34,7 @@ jobs:
           from pathlib import Path
           from xml.etree import ElementTree as ET
 
-          MIN_KM = 30
+          MIN_KM = 10
 
           def haversine(lat1, lon1, lat2, lon2):
               R = 6371

@@ -90,6 +90,8 @@ async function selectRace(raceName) {
     if (!race) return;
 
     document.activeElement.blur();
+    const detailOverlay = document.getElementById('race-detail-overlay');
+    const wasOpen = detailOverlay && !detailOverlay.classList.contains('hidden');
     selectedRaceName = raceName;
 
     if (currentSearchFilter) clearSearch();
@@ -102,7 +104,15 @@ async function selectRace(raceName) {
     isPanelExpanded = false;
     panel.classList.remove('expanded');
 
-    history.replaceState(null, '', '?race=' + slugify(raceName));
+    // Push a history entry the first time the detail panel opens, so the browser
+    // back button closes it; switching races while it's already open just replaces
+    // the current entry instead of stacking up more back-presses than expected.
+    const targetQuery = '?race=' + slugify(raceName);
+    if (wasOpen || window.location.search === targetQuery) {
+        history.replaceState(null, '', targetQuery);
+    } else {
+        history.pushState(null, '', targetQuery);
+    }
     if (window.goatcounter && window.goatcounter.count) {
         window.goatcounter.count({ path: '/?race=' + slugify(raceName) });
     }

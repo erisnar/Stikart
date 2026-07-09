@@ -113,6 +113,20 @@ test('search filters the race list', async ({ page }) => {
     await expect(page.locator('.race-item')).toHaveCount(totalRaces);
 });
 
+test('GPX download button downloads a .gpx file', async ({ page }) => {
+    const minimalGpx = '<?xml version="1.0"?><gpx><trk><trkseg><trkpt lat="0" lon="0"><ele>0</ele></trkpt></trkseg></trk></gpx>';
+    await page.route(/raw\.githubusercontent\.com/, route =>
+        route.fulfill({ contentType: 'application/gpx+xml', body: minimalGpx }));
+
+    await openRaceDeepLink(page);
+
+    const [download] = await Promise.all([
+        page.waitForEvent('download'),
+        page.locator('.race-download-link').first().click(),
+    ]);
+    expect(download.suggestedFilename()).toMatch(/\.gpx$/);
+});
+
 // Position within the chart element at a horizontal fraction, for click().
 async function chartPos(page, relX) {
     const box = await chart(page).boundingBox();

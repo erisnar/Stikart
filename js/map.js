@@ -63,6 +63,7 @@ const hitAreaPolylines = {};
 const raceDecorators = {};
 const raceMarkers = {};
 let activeCheckpointMarkers = [];
+let focusedRaceName = null; // which race is visually emphasized on the map — separate from selectedRaceName (which race the info panel shows)
 const raceElevationData = {};
 const raceChartMeta = {};
 
@@ -298,7 +299,7 @@ async function loadRace(race) {
                 if (nearby.length > 1) {
                     if (selectedRaceName) closeRaceDetail();
                     showRacePicker(e.latlng, nearby);
-                } else if (selectedRaceName) {
+                } else if (selectedRaceName === race.name && focusedRaceName === race.name) {
                     closeRaceDetail();
                 } else {
                     selectRace(race.name);
@@ -347,6 +348,7 @@ async function loadRaces(skip = null) {
 // ── Highlight / reset ─────────────────────────────────────────────────────────
 
 function highlightRace(activeName) {
+    focusedRaceName = activeName;
     for (const [name, polylines] of Object.entries(racePolylines)) {
         const isActive = name === activeName;
         polylines.forEach(pl => {
@@ -394,6 +396,7 @@ function highlightRace(activeName) {
 }
 
 function resetRaceStyles() {
+    focusedRaceName = null;
     disableDistanceDot();
     activeCheckpointMarkers.forEach(m => m.marker.remove());
     activeCheckpointMarkers = [];

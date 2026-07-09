@@ -120,7 +120,7 @@ Checkpoints power: elevation profile marker lines, pace planner split table, and
 
 ## Loop races
 
-For races where the GPX contains only one loop, set `manualDistance` to the full race distance. This overrides the GPX-calculated distance for display and category detection. Multiple distances of the same loop (e.g. 50K and 100K) each need a separate entry pointing to the same GPX file. The submission form handles this automatically with a multi-distance list when GPX distance < 30 km.
+For races where the GPX contains only one loop, set `manualDistance` to the full race distance. This overrides the GPX-calculated distance for display and category detection. Multiple distances of the same loop (e.g. 50K and 100K) each need a separate entry pointing to the same GPX file. The submission form handles this automatically with a multi-distance list when GPX distance < 10 km, pre-filled with the parsed GPX distance on the assumption of a single loop.
 
 ## Mobile UI notes
 
@@ -145,7 +145,7 @@ Users submit new races and propose edits via "Mangler det et løp?" in the info 
 
 **New race flow:**
 1. User uploads GPX → client parses distance/elevation/waypoints client-side
-2. If GPX < 30 km: loop course detected → multi-distance list appears (each distance creates a separate entry)
+2. If GPX < 10 km: loop course detected → multi-distance list appears (each distance creates a separate entry), pre-filled with the parsed distance
 3. Client POSTs to the Cloudflare Worker
 4. Worker: creates branch → uploads GPX → inserts entry/entries into `raceRoutes` → opens PR
 5. GitHub Actions validates and auto-merges
@@ -164,8 +164,8 @@ Users submit new races and propose edits via "Mangler det et løp?" in the info 
 ## GitHub Actions
 
 **`validate-race.yml`** — triggers on `add-race/*` and `edit-race/*` PR branches:
-- Validates GPX has `<trkpt>` track points and total distance ≥ 30 km
-- Loop race exception: if GPX < 30 km, checks `manualDistance` in the `js/races.js` diff instead
+- Validates GPX has `<trkpt>` track points and total distance ≥ 10 km
+- Loop race exception: if GPX < 10 km, checks `manualDistance` in the `js/races.js` diff instead
 - Comments result on the PR; squash-merges and deletes branch on pass
 
 ## Updating `gpxUpdated` for all races
