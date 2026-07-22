@@ -118,15 +118,18 @@ test('route type filter separates exploring routes from official races', async (
     await expandPanel(page);
     await expect.poll(() => page.locator('.race-item').count()).toBeGreaterThan(5);
 
+    await page.locator('#route-type-select').selectOption('exploring');
+    const existingExploringCount = await page.locator('.race-item').count();
+
     const exploringName = await page.evaluate(() => {
-        raceRoutes[0].routeType = 'exploring';
+        const officialRace = raceRoutes.find(race => (race.routeType || 'race') === 'race');
+        officialRace.routeType = 'exploring';
         renderRaceList();
-        return raceRoutes[0].name;
+        return officialRace.name;
     });
 
-    await page.locator('#route-type-select').selectOption('exploring');
-    await expect(page.locator('.race-item')).toHaveCount(1);
-    await expect(page.locator('.race-item').first()).toContainText(exploringName);
+    await expect(page.locator('.race-item')).toHaveCount(existingExploringCount + 1);
+    await expect(page.locator(`.race-item[data-race="${exploringName}"]`)).toHaveCount(1);
 
     await page.locator('#route-type-select').selectOption('race');
     await expect(page.locator(`.race-item[data-race="${exploringName}"]`)).toHaveCount(0);

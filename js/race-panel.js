@@ -192,9 +192,9 @@ function showRaceDetailOverlay(race, loading = false) {
                     <div><strong>GPX:</strong> ${downloadLinks}${race.gpxUpdated ? ` <em class="gpx-date">${formatDate(race.gpxUpdated)}</em>` : ''}</div>
                 </div>
                 <div class="race-actions">
-                    <a href="${race.url}" target="_blank" rel="noopener noreferrer" class="race-link">
+                    ${race.url ? `<a href="${race.url}" target="_blank" rel="noopener noreferrer" class="race-link">
                         Besøk nettside →
-                    </a>
+                    </a>` : ''}
                     <button class="race-share-btn" onclick="shareRace('${race.name.replace(/'/g, "\\'")}')">
                         Del løype
                     </button>

@@ -139,6 +139,18 @@ const raceRoutes = [
         description: 'Et teknisk krevende terrengløp på ca. 12 km som går hovedsakelig på blå- og rødmerkede stier i Østmarka.',
     },
     {
+        id: 'rundvannsaasen-bjerringaasen-haukaasen',
+        name: 'Rundvannsåsen - Bjerringåsen - Haukåsen',
+        files: ['race-calendar/Østmarka/rundvannsaasen-bjerringaasen-haukaasen.gpx'],
+        gpxUpdated: '2026-07-22',
+        color: '#2a9d8f',
+        useCalculatedStats: true,
+        category: 'short-trail',
+        routeType: 'exploring',
+        date: '2026-05-21',
+        description: 'Utforskningsrute i Østmarka via Rundvannsåsen, Bjerringåsen og Haukåsen.',
+    },
+    {
         id: 'endless-shore-ultra',
         name: 'Endless Shore Ultra',
         files: ['race-calendar/EndlessShores/Endless_Shores_Ultra_Trail_100M_2026.gpx'],
