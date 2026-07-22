@@ -54,21 +54,49 @@ jobs:
                   print("ERROR: No GPX files found in this PR")
                   sys.exit(1)
 
-              # Edit PR with no new GPX: validate the updated entry fields from the races.js diff
-              import subprocess, re
+              # Edit PR with no new GPX: worker.js always prepends the updated entry
+              # right after the raceRoutes marker, so validate that entry directly
+              # from the current file rather than the diff (a partial-field edit's
+              # diff omits unchanged fields like name/date/category entirely).
+              import re
               from datetime import datetime
 
               VALID_CATEGORIES = {'short-trail', 'marathon-trail', '50k', '50-miles', '100k', '100-miles', '100-miles-plus'}
 
               try:
-                  diff = subprocess.check_output(
-                      ['git', 'diff', '--unified=0', 'origin/main...HEAD', '--', 'js/races.js']
-                  ).decode('utf-8', errors='replace')
+                  with open('js/races.js', encoding='utf-8') as f:
+                      races_js = f.read()
               except Exception as e:
-                  print(f"ERROR: could not read races.js diff: {e}")
+                  print(f"ERROR: could not read js/races.js: {e}")
                   sys.exit(1)
 
-              added = '\n'.join(l[1:] for l in diff.splitlines() if l.startswith('+') and not l.startswith('+++'))
+              marker = 'const raceRoutes = ['
+              marker_idx = races_js.find(marker)
+              if marker_idx == -1:
+                  print("ERROR: could not find raceRoutes array in js/races.js")
+                  sys.exit(1)
+
+              depth = 0
+              entry_start = entry_end = None
+              i = marker_idx + len(marker)
+              while i < len(races_js):
+                  c = races_js[i]
+                  if c == '{':
+                      if depth == 0:
+                          entry_start = i
+                      depth += 1
+                  elif c == '}':
+                      depth -= 1
+                      if depth == 0:
+                          entry_end = i + 1
+                          break
+                  i += 1
+
+              if entry_start is None or entry_end is None:
+                  print("ERROR: could not locate first race entry in js/races.js")
+                  sys.exit(1)
+
+              added = races_js[entry_start:entry_end]
               entry_errors = []
 
               name_m = re.search(r'''name:\s*["']([^"']+)["']''', added)
