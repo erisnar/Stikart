@@ -6,6 +6,7 @@ function welcomeLoadAll() {
     document.getElementById('mobile-welcome').classList.add('hidden');
     document.getElementById('month-filter-btn').classList.add('visible');
     document.getElementById('category-filter-btn').classList.add('visible');
+    document.getElementById('route-type-filter-btn').classList.add('visible');
     loadRaces();
 }
 
@@ -57,8 +58,9 @@ function getVisibleRaces() {
         const raceMonth = new Date(race.date).getMonth();
         const matchesMonth = currentMonthFilter === null || raceMonth === currentMonthFilter;
         const matchesCategory = currentCategoryFilter === null || race.category === currentCategoryFilter;
+        const matchesRouteType = currentRouteTypeFilter === null || getRouteType(race) === currentRouteTypeFilter;
         const matchesSearch = !currentSearchFilter || race.name.toLowerCase().includes(currentSearchFilter);
-        return matchesMonth && matchesCategory && matchesSearch;
+        return matchesMonth && matchesCategory && matchesRouteType && matchesSearch;
     }).sort((a, b) => new Date(a.date) - new Date(b.date));
 }
 
@@ -190,9 +192,9 @@ function showRaceDetailOverlay(race, loading = false) {
                     <div><strong>GPX:</strong> ${downloadLinks}${race.gpxUpdated ? ` <em class="gpx-date">${formatDate(race.gpxUpdated)}</em>` : ''}</div>
                 </div>
                 <div class="race-actions">
-                    <a href="${race.url}" target="_blank" rel="noopener noreferrer" class="race-link">
+                    ${race.url ? `<a href="${race.url}" target="_blank" rel="noopener noreferrer" class="race-link">
                         Besøk nettside →
-                    </a>
+                    </a>` : ''}
                     <button class="race-share-btn" onclick="shareRace('${race.name.replace(/'/g, "\\'")}')">
                         Del løype
                     </button>
@@ -297,8 +299,9 @@ applyFilters = function() {
             const raceMonth = new Date(race.date).getMonth();
             const matchesMonth = currentMonthFilter === null || raceMonth === currentMonthFilter;
             const matchesCategory = currentCategoryFilter === null || race.category === currentCategoryFilter;
+            const matchesRouteType = currentRouteTypeFilter === null || getRouteType(race) === currentRouteTypeFilter;
             const matchesSearch = !currentSearchFilter || race.name.toLowerCase().includes(currentSearchFilter);
-            if (!matchesMonth || !matchesCategory || !matchesSearch) {
+            if (!matchesMonth || !matchesCategory || !matchesRouteType || !matchesSearch) {
                 closeRaceDetail();
             }
         }

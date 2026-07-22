@@ -33,3 +33,8 @@ const raceCategories = [
     { id: '100-miles', name: '100 miles (~160 km)' },
     { id: '100-miles-plus', name: '100+ miles (165+ km)' }
 ];
+
+const routeTypes = [
+    { id: 'race', name: 'Offisielt løp' },
+    { id: 'exploring', name: 'Utforske' }
+];

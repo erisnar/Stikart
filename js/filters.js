@@ -1,14 +1,20 @@
 let currentMonthFilter = null;
 let currentCategoryFilter = null;
+let currentRouteTypeFilter = null;
 let currentSearchFilter = null;
+
+function getRouteType(race) {
+    return race.routeType || 'race';
+}
 
 function applyFilters() {
     raceRoutes.forEach(race => {
         const raceMonth = new Date(race.date).getMonth();
         const matchesMonth = currentMonthFilter === null || raceMonth === currentMonthFilter;
         const matchesCategory = currentCategoryFilter === null || race.category === currentCategoryFilter;
+        const matchesRouteType = currentRouteTypeFilter === null || getRouteType(race) === currentRouteTypeFilter;
         const matchesSearch = !currentSearchFilter || race.name.toLowerCase().includes(currentSearchFilter);
-        const shouldShow = matchesMonth && matchesCategory && matchesSearch;
+        const shouldShow = matchesMonth && matchesCategory && matchesRouteType && matchesSearch;
 
         if (shouldShow && !map.hasLayer(raceLayers[race.name])) {
             map.addLayer(raceLayers[race.name]);
@@ -32,6 +38,12 @@ function filterByMonth(month) {
 function filterByCategory(category) {
     currentCategoryFilter = category;
     document.getElementById('category-filter-btn').classList.toggle('active', category !== null);
+    applyFilters();
+}
+
+function filterByRouteType(routeType) {
+    currentRouteTypeFilter = routeType;
+    document.getElementById('route-type-filter-btn').classList.toggle('active', routeType !== null);
     applyFilters();
 }
 
