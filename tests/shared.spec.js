@@ -1,5 +1,5 @@
 // Smoke tests that run on both the desktop and mobile projects.
-const { test, expect, TEST_RACE, openRaceDeepLink, chart } = require('./fixtures');
+const { test, expect, TEST_RACE, EXPLORING_ROUTE, openRaceDeepLink, chart } = require('./fixtures');
 const fs = require('fs');
 const path = require('path');
 
@@ -39,6 +39,8 @@ test('each module exposes its key globals after page load', async ({ page }) => 
         raceRoutes:            Array.isArray(raceRoutes) && raceRoutes.length > 0,
         // utils.js
         slugify:               typeof slugify === 'function',
+        routeQuery:            typeof routeQuery === 'function',
+        routeFromSearchParams: typeof routeFromSearchParams === 'function',
         haversineKm:           typeof haversineKm === 'function',
         formatDate:            typeof formatDate === 'function',
         // map.js
@@ -94,4 +96,12 @@ test('deep link ?race=<slug> opens the race detail with an elevation chart', asy
     await expect.poll(() =>
         page.evaluate(name => racePolylines[name][0].options.weight, TEST_RACE.name)
     ).toBe(5);
+});
+
+test('deep link ?exploring=<slug> opens an exploring route', async ({ page }) => {
+    await page.goto(`/index.html?exploring=${EXPLORING_ROUTE.slug}`);
+
+    await expect(page.locator('#race-detail-overlay')).toBeVisible();
+    await expect(page.locator('#race-detail-content h3')).toContainText(EXPLORING_ROUTE.name);
+    await expect(chart(page)).toBeVisible({ timeout: 15000 });
 });

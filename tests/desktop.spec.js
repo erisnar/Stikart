@@ -1,5 +1,5 @@
 const {
-    test, expect, TEST_RACE,
+    test, expect, TEST_RACE, EXPLORING_ROUTE,
     openRaceDeepLink, chart, expandPanel, kmTooltip, hoverChart, cursorX,
 } = require('./fixtures');
 
@@ -134,6 +134,16 @@ test('route type filter separates exploring routes from official races', async (
     await page.locator('#route-type-select').selectOption('race');
     await expect(page.locator(`.race-item[data-race="${exploringName}"]`)).toHaveCount(0);
     await expect.poll(() => page.locator('.race-item').count()).toBeGreaterThan(5);
+});
+
+test('selecting an exploring route uses the exploring URL parameter', async ({ page }) => {
+    await page.goto('/index.html');
+    await expandPanel(page);
+    await page.locator('#route-type-select').selectOption('exploring');
+    await page.locator(`.race-item[data-race="${EXPLORING_ROUTE.name}"]`).click();
+
+    await expect(page.locator('#race-detail-overlay')).toBeVisible();
+    await expect(page).toHaveURL(new RegExp(`exploring=${EXPLORING_ROUTE.slug}`));
 });
 
 test('GPX download button downloads a .gpx file', async ({ page }) => {
