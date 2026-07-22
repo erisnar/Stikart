@@ -149,6 +149,10 @@ const raceRoutes = [
         routeType: 'exploring',
         date: '2026-05-21',
         description: 'Utforskningsrute i Østmarka via Rundvannsåsen, Bjerringåsen og Haukåsen.',
+        routeDescription: 'Ruten starter ved Skullerud T-banestasjon og avsluttes ved Godlia T-banestasjon, men kan også løpes motsatt vei. Omtrent 2 km går på asfalt, 2 km på grusvei og resten på sti.',
+        routeLinks: [ // optional links for credits, blog posts, Strava, etc.
+            { label: 'Route author - strava profile', url: 'https://www.strava.com/athletes/59309702' }
+        ]
     },
     {
         id: 'endless-shore-ultra',

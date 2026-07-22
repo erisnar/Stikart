@@ -10,6 +10,15 @@ function slugify(name) {
         .replace(/^-|-$/g, '');
 }
 
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 function raceBySlug(slug) {
     return raceRoutes.find(r => slugify(r.name) === slug) || null;
 }

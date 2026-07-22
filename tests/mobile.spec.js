@@ -1,6 +1,6 @@
 // Runs on the Pixel 7 project: touch events, coarse pointer, 412px viewport.
 const {
-    test, expect, TEST_RACE, DESCRIBED_RACE,
+    test, expect, TEST_RACE, DESCRIBED_RACE, EXPLORING_ROUTE,
     openRaceDeepLink, chart, kmTooltip, touchScrub, cursorX,
 } = require('./fixtures');
 
@@ -43,6 +43,19 @@ test('expanding the detail card reveals the description', async ({ page }) => {
     await page.locator('#minimize-detail').tap();
     await expect(overlay).not.toHaveClass(/minimized/);
     await expect(page.locator('.race-description')).toBeVisible();
+});
+
+test('expanding an exploring route reveals the route description', async ({ page }) => {
+    await page.goto(`/index.html?exploring=${EXPLORING_ROUTE.slug}`);
+    const overlay = page.locator('#race-detail-overlay');
+    await expect(overlay).toBeVisible();
+    await expect(chart(page)).toBeVisible({ timeout: 15000 });
+    await expect(overlay).toHaveClass(/minimized/);
+    await expect(page.locator('.route-description')).toBeHidden();
+
+    await page.locator('#minimize-detail').tap();
+    await expect(overlay).not.toHaveClass(/minimized/);
+    await expect(page.locator('.route-description')).toBeVisible();
 });
 
 test('scrubbing a finger across the elevation chart moves the cursor and locks on release', async ({ page }) => {

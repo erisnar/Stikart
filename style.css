@@ -793,7 +793,8 @@ body {
     }
 
     .race-detail-overlay.minimized .race-popup-details,
-    .race-detail-overlay.minimized .race-description {
+    .race-detail-overlay.minimized .race-description,
+    .race-detail-overlay.minimized .route-description {
         display: none;
     }
 
@@ -1225,6 +1226,43 @@ a.missing-race-name:hover {
     color: #555;
     margin: 4px 0 12px 0;
     line-height: 1.5;
+}
+
+.route-description {
+    border-top: 1px solid #f0ece8;
+    padding: 12px 15px 2px;
+}
+
+.route-description h4 {
+    margin: 0 0 6px;
+    color: #444;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.route-description-text {
+    color: #555;
+    font-size: 0.88em;
+    line-height: 1.45;
+    margin: 0 0 8px;
+}
+
+.route-description-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.route-description-link {
+    color: #116A7B;
+    font-size: 0.86em;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.route-description-link:hover {
+    text-decoration: underline;
 }
 
 .loop-distance-entry {
