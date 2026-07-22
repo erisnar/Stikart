@@ -85,6 +85,7 @@ Optional fields:
 manualDistance: 100,    // km — overrides GPX-calculated distance (required for loop races)
 gpxYear: 2025,          // shown as a warning label if GPX is from a prior year
 description: 'Text',    // shown in the race detail popup; set via submission form
+routeType: 'exploring', // 'race' or 'exploring' — defaults to 'race' when omitted
 ```
 
 **Checkpoints are not stored in js/races.js entries.** They are loaded at runtime in `loadRace`:

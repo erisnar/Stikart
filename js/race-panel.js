@@ -6,6 +6,7 @@ function welcomeLoadAll() {
     document.getElementById('mobile-welcome').classList.add('hidden');
     document.getElementById('month-filter-btn').classList.add('visible');
     document.getElementById('category-filter-btn').classList.add('visible');
+    document.getElementById('route-type-filter-btn').classList.add('visible');
     loadRaces();
 }
 
@@ -57,8 +58,9 @@ function getVisibleRaces() {
         const raceMonth = new Date(race.date).getMonth();
         const matchesMonth = currentMonthFilter === null || raceMonth === currentMonthFilter;
         const matchesCategory = currentCategoryFilter === null || race.category === currentCategoryFilter;
+        const matchesRouteType = currentRouteTypeFilter === null || getRouteType(race) === currentRouteTypeFilter;
         const matchesSearch = !currentSearchFilter || race.name.toLowerCase().includes(currentSearchFilter);
-        return matchesMonth && matchesCategory && matchesSearch;
+        return matchesMonth && matchesCategory && matchesRouteType && matchesSearch;
     }).sort((a, b) => new Date(a.date) - new Date(b.date));
 }
 
@@ -297,8 +299,9 @@ applyFilters = function() {
             const raceMonth = new Date(race.date).getMonth();
             const matchesMonth = currentMonthFilter === null || raceMonth === currentMonthFilter;
             const matchesCategory = currentCategoryFilter === null || race.category === currentCategoryFilter;
+            const matchesRouteType = currentRouteTypeFilter === null || getRouteType(race) === currentRouteTypeFilter;
             const matchesSearch = !currentSearchFilter || race.name.toLowerCase().includes(currentSearchFilter);
-            if (!matchesMonth || !matchesCategory || !matchesSearch) {
+            if (!matchesMonth || !matchesCategory || !matchesRouteType || !matchesSearch) {
                 closeRaceDetail();
             }
         }

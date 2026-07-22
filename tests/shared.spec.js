@@ -10,7 +10,7 @@ const JS_LOAD_ORDER = [
     'js/races.js',        // raceRoutes
     'js/utils.js',        // slugify, haversineKm, fmtTime, formatDate, …
     'js/map.js',          // map, raceLayers, loadRace, highlightRace, regenerateColors, …
-    'js/filters.js',      // applyFilters, filterByMonth, filterByCategory, …
+    'js/filters.js',      // applyFilters, filterByMonth, filterByCategory, filterByRouteType, …
     'js/elevation.js',    // buildElevationProfile, renderElevationChart, updateElevCursor
     'js/cursor.js',       // enableDistanceDot, enableChartMouse/Touch, dotFrozen
     'js/pace-planner.js', // calcCheckpointSplits, renderPacePlanner, openPacePlanner, …
@@ -34,6 +34,7 @@ test('each module exposes its key globals after page load', async ({ page }) => 
         isTouchDevice:         typeof isTouchDevice === 'boolean',
         darkColorPool:         Array.isArray(darkColorPool) && darkColorPool.length > 0,
         raceCategories:        Array.isArray(raceCategories),
+        routeTypes:            Array.isArray(routeTypes),
         // races.js
         raceRoutes:            Array.isArray(raceRoutes) && raceRoutes.length > 0,
         // utils.js
@@ -47,6 +48,7 @@ test('each module exposes its key globals after page load', async ({ page }) => 
         // filters.js
         applyFilters:          typeof applyFilters === 'function',
         filterByMonth:         typeof filterByMonth === 'function',
+        filterByRouteType:     typeof filterByRouteType === 'function',
         // elevation.js
         buildElevationProfile: typeof buildElevationProfile === 'function',
         renderElevationChart:  typeof renderElevationChart === 'function',
