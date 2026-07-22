@@ -86,6 +86,10 @@ manualDistance: 100,    // km — overrides GPX-calculated distance (required fo
 gpxYear: 2025,          // shown as a warning label if GPX is from a prior year
 description: 'Text',    // shown in the race detail popup; set via submission form
 routeType: 'exploring', // 'race' or 'exploring' — defaults to 'race' when omitted
+routeDescription: 'Text', // optional route note shown below Pacing-kalkulator
+routeLinks: [             // optional links for credits, blog posts, Strava, etc.
+  { label: 'Blogginnlegg', url: 'https://example.com/route' }
+],
 ```
 
 **Checkpoints are not stored in js/races.js entries.** They are loaded at runtime in `loadRace`:

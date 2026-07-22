@@ -39,6 +39,7 @@ test('each module exposes its key globals after page load', async ({ page }) => 
         raceRoutes:            Array.isArray(raceRoutes) && raceRoutes.length > 0,
         // utils.js
         slugify:               typeof slugify === 'function',
+        escapeHtml:            typeof escapeHtml === 'function',
         routeQuery:            typeof routeQuery === 'function',
         routeFromSearchParams: typeof routeFromSearchParams === 'function',
         haversineKm:           typeof haversineKm === 'function',
@@ -63,6 +64,7 @@ test('each module exposes its key globals after page load', async ({ page }) => 
         renderPacePlanner:     typeof renderPacePlanner === 'function',
         // race-panel.js
         selectRace:            typeof selectRace === 'function',
+        renderRouteDescription: typeof renderRouteDescription === 'function',
         showRaceDetailOverlay: typeof showRaceDetailOverlay === 'function',
         closeRaceDetail:       typeof closeRaceDetail === 'function',
         // submission.js
@@ -104,4 +106,16 @@ test('deep link ?exploring=<slug> opens an exploring route', async ({ page }) =>
     await expect(page.locator('#race-detail-overlay')).toBeVisible();
     await expect(page.locator('#race-detail-content h3')).toContainText(EXPLORING_ROUTE.name);
     await expect(chart(page)).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.route-description')).toContainText('Godlia T-banestasjon');
+
+    const routeDescriptionAfterPace = await page.evaluate(() => {
+        const pace = document.querySelector('.pace-section, .pace-section-toggle');
+        const routeDescription = document.querySelector('.route-description');
+        return Boolean(
+            pace &&
+            routeDescription &&
+            (pace.compareDocumentPosition(routeDescription) & Node.DOCUMENT_POSITION_FOLLOWING)
+        );
+    });
+    expect(routeDescriptionAfterPace).toBe(true);
 });
