@@ -3,10 +3,6 @@ let currentCategoryFilter = null;
 let currentRouteTypeFilter = null;
 let currentSearchFilter = null;
 
-function getRouteType(race) {
-    return race.routeType || 'race';
-}
-
 function applyFilters() {
     raceRoutes.forEach(race => {
         const raceMonth = new Date(race.date).getMonth();

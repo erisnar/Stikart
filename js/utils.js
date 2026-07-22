@@ -14,6 +14,32 @@ function raceBySlug(slug) {
     return raceRoutes.find(r => slugify(r.name) === slug) || null;
 }
 
+function getRouteType(race) {
+    return race.routeType || 'race';
+}
+
+function routeQueryParam(race) {
+    return getRouteType(race) === 'exploring' ? 'exploring' : 'race';
+}
+
+function routeQuery(race) {
+    return '?' + routeQueryParam(race) + '=' + slugify(race.name);
+}
+
+function routeFromSearchParams(params) {
+    const exploringSlug = params.get('exploring');
+    if (exploringSlug) {
+        return raceRoutes.find(race => getRouteType(race) === 'exploring' && slugify(race.name) === exploringSlug) || null;
+    }
+
+    const raceSlug = params.get('race');
+    if (raceSlug) {
+        return raceRoutes.find(race => getRouteType(race) === 'race' && slugify(race.name) === raceSlug) || null;
+    }
+
+    return null;
+}
+
 function formatDate(dateStr) {
     const date = new Date(dateStr);
     const day = date.getDate();

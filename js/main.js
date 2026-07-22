@@ -72,7 +72,7 @@ injectStructuredData();
 regenerateColors();
 
 const params = new URLSearchParams(window.location.search);
-const priorityRace = params.get('race') ? raceBySlug(params.get('race')) : null;
+const priorityRace = routeFromSearchParams(params);
 
 if (priorityRace) {
     loadRace(priorityRace).then(() => {
@@ -101,10 +101,9 @@ map.on('click', () => {
 });
 
 window.addEventListener('popstate', () => {
-    const raceSlug = new URLSearchParams(window.location.search).get('race');
-    if (raceSlug) {
-        const race = raceBySlug(raceSlug);
-        if (race && race.name !== selectedRaceName) {
+    const race = routeFromSearchParams(new URLSearchParams(window.location.search));
+    if (race) {
+        if (race.name !== selectedRaceName) {
             const isLoaded = racePolylines[race.name] && racePolylines[race.name].length > 0;
             if (isLoaded) selectRace(race.name);
             else loadRace(race).then(() => selectRace(race.name));

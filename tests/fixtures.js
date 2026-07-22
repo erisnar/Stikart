@@ -20,6 +20,11 @@ const test = base.extend({
 // most tests. If it is ever removed from raceRoutes, point this at another one.
 const TEST_RACE = { name: 'NSM Ultra 2025', slug: 'nsm-ultra-2025' };
 
+const EXPLORING_ROUTE = {
+    name: 'Rundvannsåsen - Bjerringåsen - Haukåsen',
+    slug: 'rundvannsaasen-bjerringaasen-haukaasen',
+};
+
 // Race with a `description` field, used to verify the minimized mobile state.
 const DESCRIBED_RACE = { name: 'Lommedalen Rundt', slug: 'lommedalen-rundt' };
 
@@ -81,6 +86,6 @@ async function cursorX(page) {
 
 module.exports = {
     test, expect,
-    TEST_RACE, DESCRIBED_RACE,
+    TEST_RACE, EXPLORING_ROUTE, DESCRIBED_RACE,
     openRaceDeepLink, chart, expandPanel, kmTooltip, hoverChart, touchScrub, cursorX,
 };

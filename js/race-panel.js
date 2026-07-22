@@ -109,14 +109,14 @@ async function selectRace(raceName) {
     // Push a history entry the first time the detail panel opens, so the browser
     // back button closes it; switching races while it's already open just replaces
     // the current entry instead of stacking up more back-presses than expected.
-    const targetQuery = '?race=' + slugify(raceName);
+    const targetQuery = routeQuery(race);
     if (wasOpen || window.location.search === targetQuery) {
         history.replaceState(null, '', targetQuery);
     } else {
         history.pushState(null, '', targetQuery);
     }
     if (window.goatcounter && window.goatcounter.count) {
-        window.goatcounter.count({ path: '/?race=' + slugify(raceName) });
+        window.goatcounter.count({ path: '/' + targetQuery });
     }
 
     const isLoaded = racePolylines[raceName] && racePolylines[raceName].length > 0;
@@ -238,7 +238,8 @@ function closeRaceDetail() {
 }
 
 function shareRace(raceName) {
-    const url = window.location.origin + window.location.pathname + '?race=' + slugify(raceName);
+    const race = raceRoutes.find(r => r.name === raceName);
+    const url = window.location.origin + window.location.pathname + (race ? routeQuery(race) : '?race=' + slugify(raceName));
     const isTouch = navigator.maxTouchPoints > 0;
     if (isTouch && navigator.share) {
         navigator.share({ title: raceName, url });
